@@ -1,0 +1,13 @@
+query remoteOrders($branchID: ID!, $orderStates: [OrderStateCategoryEnum!]) {
+    orders: orders(
+        order: {
+            companyBranches: [$branchID]
+            includeOldFinished: false,
+            orderStateCategoryTarget:FE_ADMIN,
+            orderStateCategoriesOR:$orderStates
+        }
+
+    ) {
+        ...genericOrder
+    }
+}

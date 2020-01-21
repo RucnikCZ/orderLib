@@ -1,0 +1,5 @@
+mutation AddOrderState($orderId: ID!,$orderState: OrderStateEnum!){
+  addOrderState(order: $orderId,orderState: $orderState){
+     id
+   }
+ }
