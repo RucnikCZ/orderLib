@@ -51,16 +51,20 @@ public class HTMLManager {
                 generator.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
             }
         } else {
+            // Tisk 58
             if (SettingsManager.getInstance().isPrinter58mm() && !SettingsManager.getInstance().isPrinter80mm()) {
                 BitmapGeneratingAsyncTask generator58 = new BitmapGeneratingAsyncTask(SettingsManager.getCtx(), html, 384, callback, zoom, arguments, model);
                 generator58.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
-            } else if (SettingsManager.getInstance().isPrinter58mm() && SettingsManager.getInstance().isPrinter80mm()) {
+            }
+            // Tisk 58 a 80
+            else if (SettingsManager.getInstance().isPrinter58mm() && SettingsManager.getInstance().isPrinter80mm()) {
                 BitmapGeneratingAsyncTask generator58 = new BitmapGeneratingAsyncTask(SettingsManager.getCtx(), html, 384, callback, zoom, arguments, model);
                 generator58.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
 
                 BitmapGeneratingAsyncTask generator80 = new BitmapGeneratingAsyncTask(SettingsManager.getCtx(), html, 580, callback, zoom, arguments, model);
                 generator80.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
-            } else if (!SettingsManager.getInstance().isPrinter58mm() && !SettingsManager.getInstance().isPrinter80mm()) {
+            }else{
+                // Tisk 80
                 generator.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
             }
         }
