@@ -63,7 +63,7 @@ public class HTMLManager {
 
                 BitmapGeneratingAsyncTask generator80 = new BitmapGeneratingAsyncTask(SettingsManager.getCtx(), html, 580, callback, zoom, arguments, model);
                 generator80.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
-            }else{
+            } else {
                 // Tisk 80
                 generator.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
             }
@@ -104,7 +104,7 @@ public class HTMLManager {
             this.mHTML.append("<div style='height:160px;'></div>");
         }
 
-        this.mHTML.append("<div style='text-align: center;'>" + "<div style='color: white; background-color: black; text-align: center;'>" + ctx.getString(R.string.create_order_ordered_in)).append(currentBill.getDate()).append("</div>");
+        this.mHTML.append("<div style='text-align: center;'>" + "<div style='color: white; background-color: black; text-align: center;'>").append(ctx.getString(R.string.create_order_ordered_in)).append(" ").append(currentBill.getDate()).append("</div>");
         this.mHTML.append("</div>" +
                 "<br/>");
 
@@ -363,7 +363,7 @@ public class HTMLManager {
                     bill.getName() + "<br/>" +
                     bill.getAddress() + "<br/>" +
                     "<strong>" + bill.getPhone() + "</strong><br />" +
-                    (!(bill.getNote().equals("")) ? ctx.getString(R.string.create_order_note) + " " + bill.getNote() : "") +
+                    (!(bill.getNote().equals("")) ? ctx.getString(R.string.create_order_note) + ": " + bill.getNote() : "") +
                     "</span>" +
                     "</div>");
         } else {
@@ -372,7 +372,7 @@ public class HTMLManager {
                     "<strong>" + deliveryTypeText + "</strong>" +
                     "</div><span style='font-size: 25px'>" +
 
-                    (!(bill.getNote().equals("")) ? ctx.getString(R.string.create_order_note) + ":" + bill.getNote() : "") +
+                    (!(bill.getNote().equals("")) ? ctx.getString(R.string.create_order_note) + ": " + bill.getNote() : "") +
                     "</span>" +
                     "</div>");
         }
