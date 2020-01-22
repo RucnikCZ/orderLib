@@ -491,14 +491,14 @@ public class BillModel {
                     for (OrderItem addition : item.getSideDish()) {
                         double additionSum;
                         additionSum = addition.getCount() * item.getPrice();
-                        String[] printAdditionItem = new String[]{"+" + String.valueOf(addition.getCount()) + "x", addition.getName() + "(" + String.format("%.2f", item.getPrice()) + " )" + BillManager.getInstance().getCurrency(), String.format("%.2f", additionSum) + BillManager.getInstance().getCurrency()};
+                        String[] printAdditionItem = new String[]{"+" + String.valueOf(addition.getCount()) + "x", addition.getName() + "(" + String.format("%.2f", addition.getPrice()) + " )" + BillManager.getInstance().getCurrency(), String.format("%.2f", additionSum) + BillManager.getInstance().getCurrency()};
                         printList.add(printAdditionItem);
                     }
 
                     for (OrderItem associated : item.getCover()) {
                         double associatedSum;
                         associatedSum = associated.getCount() * associated.getPrice();
-                        String[] printAssociatedItem = new String[]{"+" + String.valueOf(associated.getCount()) + "x", associated.getName() + "(" + String.format("%.2f", item.getPrice()) + " " + BillManager.getInstance().getCurrency() + ")", String.format("%.2f", associatedSum) + BillManager.getInstance().getCurrency()};
+                        String[] printAssociatedItem = new String[]{"+" + String.valueOf(associated.getCount()) + "x", associated.getName() + "(" + String.format("%.2f", associated.getPrice()) + " " + BillManager.getInstance().getCurrency() + ")", String.format("%.2f", associatedSum) + BillManager.getInstance().getCurrency()};
                         printList.add(printAssociatedItem);
                     }
                 }

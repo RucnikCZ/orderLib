@@ -137,7 +137,7 @@ public class BillCreation {
         BillManager.getInstance().setCurrency(order.companyBranch().defaultCurrency().code());
         bill.setCompanyModel(companyModel);
         bill.setId(order.id());
-        bill.setPrice(String.valueOf(order.totalSum().value()));
+        bill.setPrice(String.valueOf(order.totalSum().roundedValue()));
 
 
         // Vytvoření objednávky a info o doručení

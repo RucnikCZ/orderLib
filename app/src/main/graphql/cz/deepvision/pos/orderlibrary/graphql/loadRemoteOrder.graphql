@@ -122,6 +122,7 @@ fragment genericOrder on Order{
     }
     totalSum {
         value
+        roundedValue
         currency{
             enum
         }
