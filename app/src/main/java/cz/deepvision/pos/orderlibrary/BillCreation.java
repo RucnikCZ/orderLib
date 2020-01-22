@@ -307,32 +307,32 @@ public class BillCreation {
                     Log.d(BASE_TAG, "Printing order:" + bill.getId());
                     bill.setHasReceipt(true);
                     if (SettingsManager.getInstance().isPrintKitchenTicketEnabled()) {
-                        printKitchenTicket(order, bill, isKitchenPrinted);
+                        printKitchenTicket(order, isKitchenPrinted);
                         if (SettingsManager.getInstance().isPrintKitchenTicket2Times())
-                            printKitchenTicket(order, bill, isKitchenPrinted);
+                            printKitchenTicket(order, isKitchenPrinted);
 
                     }
-                    printReceipt(order, bill, isTicketPrinted);
+                    printReceipt(order, isTicketPrinted);
                     if (SettingsManager.getInstance().isPrintRecipe2Times())
-                        printReceipt(order, bill, isTicketPrinted);
+                        printReceipt(order, isTicketPrinted);
 
                 }
             }
         } else {
             if (!isKitchenPrinted || !isTicketPrinted) {
-                printKitchenTicket(order, bill, isKitchenPrinted);
-                printReceipt(order, bill, isTicketPrinted);
+                printKitchenTicket(order, isKitchenPrinted);
+                printReceipt(order, isTicketPrinted);
             }
         }
     }
 
-    private void printReceipt(GenericOrder order, BillModel bill, boolean isTicketPrinted) {
+    private void printReceipt(GenericOrder order, boolean isTicketPrinted) {
         if (!isTicketPrinted) {
             ReceiptManager.getInstance().printDoc(false, order.id(), order.orderOrigin().enum_(), order.orderStateCategory(), callback);
         }
     }
 
-    private void printKitchenTicket(GenericOrder order, BillModel bill, boolean isKitchenPrinted) {
+    private void printKitchenTicket(GenericOrder order, boolean isKitchenPrinted) {
         if (!isKitchenPrinted) {
             ReceiptManager.getInstance().printDoc(true, order.id(), order.orderOrigin().enum_(), order.orderStateCategory(), callback);
         }

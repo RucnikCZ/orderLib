@@ -29,8 +29,8 @@ public class BitmapGeneratingAsyncTask extends AsyncTask<Void, Void, Bitmap> {
         this.html = html;
         this.width = width;
         this.zoom = zoom;
-        arguments.setSmallBitmap(width == 384);
         this.arguments = arguments;
+        this.arguments.setSmallBitmap(width == 384);
         this.bill = bill;
         this.callback = new WeakReference<>(callback);
     }
