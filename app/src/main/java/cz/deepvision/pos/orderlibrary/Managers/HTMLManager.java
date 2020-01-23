@@ -117,7 +117,7 @@ public class HTMLManager {
             mHTML.append("<table style='width: 100%;color:" + backColor + ";font-size:20px'>" +
                     "<tbody>" +
                     "<tr>" +
-                    "<td style='text-align: left;'>" + ctx.getString(R.string.create_order_note) + "</td>" +
+                    "<td style='text-align: left;'>" + ctx.getString(R.string.create_order_note) +": </td>" +
                     "<td style='text-align: right;'>" + currentBill.getNote() + "</td>" +
                     "</tr>" +
                     "</tbody>" +
