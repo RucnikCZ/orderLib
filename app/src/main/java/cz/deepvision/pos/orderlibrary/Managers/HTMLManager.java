@@ -114,7 +114,7 @@ public class HTMLManager {
         }
         this.mHTML.append("<div style='text-align: center;background-color" + backColor + "'>" + "<div style='color:" + backColor + "; background-color:" + backColor2 + "; text-align: center;'>").append(ctx.getString(R.string.create_order_ordered_in)).append(" ").append(currentBill.getDate()).append("</div>");
         if (!(currentBill.getNote().equals(""))) {
-            mHTML.append("<table style='width: 100%;color:" + backColor + ";font-size:20px'>" +
+            mHTML.append("<table style='width: 100%;color:" + backColor2 + ";font-size:20px'>" +
                     "<tbody>" +
                     "<tr>" +
                     "<td style='text-align: left;'>" + ctx.getString(R.string.create_order_note) +": </td>" +
