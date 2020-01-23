@@ -108,9 +108,7 @@ public class BillCreation {
         BillModel bill = new BillModel();
         BillManager.getInstance().setCurrentBill(bill);
         for (GenericOrder.Item product : order.items()) {
-            for (GenericOrder.WareCategory wareCategory : product.recipe().wareCategories()) {
-                bill.addCategory(wareCategory.nameLabel());
-            }
+            bill.addCategory(product.recipe().wareCategories().get(0).nameLabel());
             VatModel vat = new VatModel(getCorrectPriceOrderItem(product));
             OrderItem orderItem = new OrderItem(1, product.recipe().nameLabel(), product.price().value(), vat.getVatPricing(), product.recipe().code(), product.recipe().wareCategories().get(0).nameLabel());
             bill.getVatPrices().add(vat);

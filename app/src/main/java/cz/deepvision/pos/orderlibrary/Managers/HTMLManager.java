@@ -96,6 +96,7 @@ public class HTMLManager {
         if (!currentBill.getRecyclereceiptID().equals("")) {
             String sector = currentBill.getSectorPlace();
             String recycledID = currentBill.getRecyclereceiptID();
+            this.mHTML.append("</br></br></br></br>");
             this.mHTML.append("<div style='text-align: center;color: black; background-color: white;font-size: 35px;'>");
             this.mHTML.append("<strong>").append(recycledID).append("</strong>").append("<br/>");
             this.mHTML.append("<strong>").append(sector).append("</strong>");
@@ -104,11 +105,26 @@ public class HTMLManager {
             this.mHTML.append("<div style='height:160px;'></div>");
         }
 
-        this.mHTML.append("<div style='text-align: center;'>" + "<div style='color: white; background-color: black; text-align: center;'>").append(ctx.getString(R.string.create_order_ordered_in)).append(" ").append(currentBill.getDate()).append("</div>");
-        this.mHTML.append("</div>" +
+
+        String backColor = "white";
+        String backColor2 = "black";
+        if (SettingsManager.getInstance().isInvertBonColors()) {
+            backColor = "black";
+            backColor2 = "white";
+        }
+        this.mHTML.append("<div style='text-align: center;background-color" + backColor + "'>" + "<div style='color:" + backColor + "; background-color:" + backColor2 + "; text-align: center;'>").append(ctx.getString(R.string.create_order_ordered_in)).append(" ").append(currentBill.getDate()).append("</div>");
+        if (!(currentBill.getNote().equals(""))) {
+            mHTML.append("<table style='width: 100%;color:" + backColor + "font-size:20px'>" +
+                    "<tbody>" +
+                    "<tr>" +
+                    "<td style='text-align: left;'>" + ctx.getString(R.string.create_order_note) + "</td>" +
+                    "<td style='text-align: right;'>" + currentBill.getNote() + "</td>" +
+                    "</tr>" +
+                    "</tbody>" +
+                    "</table>");
+        }
+        mHTML.append("</div>" +
                 "<br/>");
-
-
         this.mHTML.append("<div style='text-align: center;'>" +
                 "<div style='color: white; background-color: black; text-nalign: center;'>"
                 + ctx.getString(R.string.create_order_order) + " ").append(currentBill.getId()).append("</div>").append("<table style='width: 100%;font-size: 25px;'>").append("<tbody>");
@@ -150,7 +166,6 @@ public class HTMLManager {
                     ctx.getString(R.string.create_order_note) + ": " + currentBill.getNote() +
                     "</div>");
         }
-        this.mHTML.append("<br>" + " <br>" + " <br>" + " <br>");
 
         return this.mHTML.toString();
     }

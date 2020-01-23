@@ -221,4 +221,11 @@ public class SettingsManager {
         getSettings().setAutomaticFinishOrder(automaticFinishOrder);
 
     }
+    public boolean isInvertBonColors() {
+        return getSettings().isInvertBonColors();
+    }
+
+    public void setInvertBonColors(boolean invertBonColors) {
+        getSettings().setInvertBonColors(invertBonColors);
+    }
 }

@@ -25,6 +25,7 @@ public class SettingsModel {
     private boolean printCategories = false;
     private boolean printCoverBon = false;
     private boolean automaticFinishOrder = true;
+    private boolean invertBonColors = false;
     private boolean printer58mm = false;
     private boolean printer80mm = false;
 
@@ -210,5 +211,13 @@ public class SettingsModel {
 
     public void setAutomaticFinishOrder(boolean automaticFinishOrder) {
         this.automaticFinishOrder = automaticFinishOrder;
+    }
+
+    public boolean isInvertBonColors() {
+        return invertBonColors;
+    }
+
+    public void setInvertBonColors(boolean invertBonColors) {
+        this.invertBonColors = invertBonColors;
     }
 }
