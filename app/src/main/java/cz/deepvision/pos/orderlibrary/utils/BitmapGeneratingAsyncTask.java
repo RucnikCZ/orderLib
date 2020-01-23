@@ -2,14 +2,11 @@ package cz.deepvision.pos.orderlibrary.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 
 import com.izettle.html2bitmap.Html2Bitmap;
 import com.izettle.html2bitmap.content.WebViewContent;
-import com.zxy.tiny.Tiny;
 
-import java.io.ByteArrayOutputStream;
 import java.lang.ref.WeakReference;
 
 import cz.deepvision.pos.orderlibrary.models.BillModel;
