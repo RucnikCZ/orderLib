@@ -114,7 +114,7 @@ public class HTMLManager {
         }
         this.mHTML.append("<div style='text-align: center;background-color" + backColor + "'>" + "<div style='color:" + backColor + "; background-color:" + backColor2 + "; text-align: center;'>").append(ctx.getString(R.string.create_order_ordered_in)).append(" ").append(currentBill.getDate()).append("</div>");
         if (!(currentBill.getNote().equals(""))) {
-            mHTML.append("<table style='width: 100%;color:" + backColor + "font-size:20px'>" +
+            mHTML.append("<table style='width: 100%;color:" + backColor + ";font-size:20px'>" +
                     "<tbody>" +
                     "<tr>" +
                     "<td style='text-align: left;'>" + ctx.getString(R.string.create_order_note) + "</td>" +
@@ -158,15 +158,9 @@ public class HTMLManager {
                 "<br/>");
 
         String deliveryTypeText = currentBill.getDeliveryType().equals(EnumUtil.DeliveryType.MESSENGER) ? ctx.getString(R.string.html_delivery) : ctx.getString(R.string.html_personal_pick);
-        if (!currentBill.getNote().equals("")) {
-            this.mHTML.append("<div style='text-align: left; border_left-style: solid;'>" +
-                    "<div style='color: white; background-color: black; text-align: center;'>" +
-                    "<strong>" + deliveryTypeText + "</strong>" +
-                    "</div><span style='font-size: 22px'>" +
-                    ctx.getString(R.string.create_order_note) + ": " + currentBill.getNote() +
-                    "</div>");
-        }
-
+        this.mHTML.append("<div style='text-align: left; border_left-style: solid;'>" +
+                "<div style='color: white; background-color: black; text-align: center;'>" +
+                "<strong>" + deliveryTypeText + "</strong>");
         return this.mHTML.toString();
     }
 

@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 
 import com.izettle.html2bitmap.Html2Bitmap;
 import com.izettle.html2bitmap.content.WebViewContent;
+import com.zxy.tiny.Tiny;
 
 import java.io.ByteArrayOutputStream;
 import java.lang.ref.WeakReference;
@@ -58,26 +59,10 @@ public class BitmapGeneratingAsyncTask extends AsyncTask<Void, Void, Bitmap> {
     @Override
     protected void onPostExecute(Bitmap bitmap) {
         Callback bitmapCallback = this.callback.get();
-        Bitmap compressedBitmap = compressor(bitmap, Bitmap.CompressFormat.JPEG, 50);
         if (bitmapCallback != null) {
             if (bill.isStorno()) bitmap = null;
             bitmapCallback.done(bitmap, this.arguments, bill);
         }
-    }
-
-    private Bitmap compressor(Bitmap bitmap, Bitmap.CompressFormat format, Integer quality) {
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(format, quality, stream);
-        byte[] byteArray = stream.toByteArray();
-
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = false;
-        options.inSampleSize = 2;
-
-        Bitmap compressedBitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length, options);
-
-
-        return BitmapUtil.scaleImage(compressedBitmap, 580, true);
     }
 
     public interface Callback {
