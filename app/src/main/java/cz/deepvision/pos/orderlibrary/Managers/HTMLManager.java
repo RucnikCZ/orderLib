@@ -364,27 +364,16 @@ public class HTMLManager {
         BillModel bill = BillManager.getInstance().getCurrentBill();
         String deliveryTypeText = bill.getDeliveryType().equals(EnumUtil.DeliveryType.MESSENGER) ? ctx.getString(R.string.html_delivery) : ctx.getString(R.string.html_personal_pick);
 
-        if (bill.getDeliveryType().equals(EnumUtil.DeliveryType.MESSENGER)) {
-            this.mHTML.append("<div style='text-align: left;'>" +
-                    "<div style='color: white; background-color: black; text-align: center;'>" +
-                    "<strong>" + deliveryTypeText + "</strong>" +
-                    "</div><span style='font-size: 25px'>" +
-                    bill.getName() + "<br/>" +
-                    bill.getAddress() + "<br/>" +
-                    "<strong>" + bill.getPhone() + "</strong><br />" +
-                    (!(bill.getNote().equals("")) ? ctx.getString(R.string.create_order_note) + ": " + bill.getNote() : "") +
-                    "</span>" +
-                    "</div>");
-        } else {
-            this.mHTML.append("<div style='text-align: left;'>" +
-                    "<div style='color: white; background-color: black; text-align: center;'>" +
-                    "<strong>" + deliveryTypeText + "</strong>" +
-                    "</div><span style='font-size: 25px'>" +
-
-                    (!(bill.getNote().equals("")) ? ctx.getString(R.string.create_order_note) + ": " + bill.getNote() : "") +
-                    "</span>" +
-                    "</div>");
-        }
+        this.mHTML.append("<div style='text-align: left;'>" +
+                "<div style='color: white; background-color: black; text-align: center;'>" +
+                "<strong>" + deliveryTypeText + "</strong>" +
+                "</div><span style='font-size: 25px'>" +
+                bill.getName() + "<br/>" +
+                bill.getAddress() + "<br/>" +
+                "<strong>" + bill.getPhone() + "</strong><br />" +
+                (!(bill.getNote().equals("")) ? ctx.getString(R.string.create_order_note) + ": " + bill.getNote() : "") +
+                "</span>" +
+                "</div>");
 
     }
 
