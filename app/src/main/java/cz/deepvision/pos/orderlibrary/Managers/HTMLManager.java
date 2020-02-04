@@ -192,7 +192,7 @@ public class HTMLManager {
                 "<br/>" + company.getCompanyName() +
                 "</div>" +
                 company.getAddress() + "<br/>" +
-                "IČ:" + company.getIdentificator() + "<br/>" +
+                ctx.getString(R.string.companyID) + ":" + company.getIdentificator() + "<br/>" +
                 ctx.getString(R.string.companyVatID) + ":" + company.getVatIdentificator() + "<br/>" +
                 "</div>" +
                 "<br/>");
