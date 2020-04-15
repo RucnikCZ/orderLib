@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">OrderCreationLib</string>
+    <string name="order_tip">Tip</string>
+    <string name="create_order_note">Poznámka</string>
+    <string name="delivery_type">Doručení:</string>
+    <string name="html_delivery">POSLÍČEK</string>
+    <string name="html_personal_pick">OSOBNÍ ODBĚR</string>
+    <string name="companyVatID">DIČ</string>
+    <string name="companyID">IČ</string>
+    <string name="sum">Celkem</string>
+    <string name="create_order_ticket_number">Účtenka číslo</string>
+    <string name="create_order_ordered_in">Objednáno v</string>
+    <string name="create_order_service">Obsluha</string>
+    <string name="create_order_run_cashier">Provoz a pokladna</string>
+    <string name="create_order_order">Objednávka</string>
+    <string name="create_order_payment">Platba:</string>
+    <string name="create_order_thank_you">Děkujeme za objednávku :)</string>
+    <string name="deliverAt">Doručit v</string>
+    <string name="html_cash">HOTOVOST</string>
+    <string name="html_card">KARTOU</string>
+    <string name="vat">DPH</string>
+    <string name="without_vat">Bez DPH</string>
+</resources>

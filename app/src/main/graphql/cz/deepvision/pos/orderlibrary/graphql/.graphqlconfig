@@ -1,0 +1,17 @@
+{
+  "name": "Speedlo GraphQL Schema",
+  "schemaPath": "schema.json",
+  "extensions": {
+    "endpoints": {
+      "Default GraphQL Endpoint": {
+        "url": "https://c2e-p1.deep-vision.cloud/graphql",
+        "headers": {
+          "user-agent": "JS GraphQL",
+          "Authorization": "token eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1OTUsImF1dGhlbnRpY2F0aW9uX3Rva2VuIjoiQllZczZXendwZ1JPbDhvWGZqVEdOd3R0IiwiaWF0IjoyNjg4NzIyNTYsImp0aSI6IjJhYTI5YTJkNDhmZGNkNTQ3MGE0ODMxZmY1N2E0MDk0In0.rdOu66BQNtOy6wNQgYZ3aS29MTRdDjdjEz3uEPKwy-c"
+
+        },
+        "introspect": false
+      }
+    }
+  }
+}

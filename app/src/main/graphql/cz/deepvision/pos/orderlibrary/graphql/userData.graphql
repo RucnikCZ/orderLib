@@ -1,0 +1,10 @@
+query userQuery($userID: ID!){
+    userData: user(id: $userID){
+        firstName
+        lastName
+        branches : accessibleBranches{
+            id
+            name
+        }
+    }
+}

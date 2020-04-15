@@ -1,0 +1,154 @@
+query remoteOrder($id: ID!){
+    singleOrder: order(id : $id)
+    {
+        ...genericOrder
+    }
+
+}
+fragment genericOrder on Order{
+    coveringOrders{
+        id
+    }
+    companyBranch{
+        name
+        defaultCurrency{
+            code
+        }
+
+    }
+    acceptedAt
+    deliverAt
+    orderOrigin {
+        enum
+    }
+    id
+    orderStateCategory
+    address {
+        original
+        city
+        street
+        houseNumber
+    }
+    customer {
+        defaultEmail {
+            email
+        }
+        defaultPhone {
+            phone
+        }
+        firstName
+        lastName
+    }
+    orderStates {
+        code
+        enum
+    }
+    note
+    eet{
+        mode
+        bkp
+        pkp
+        fik
+    }
+    warePriceType {
+        enum
+    }
+    deliveryType{
+        enum
+    }
+    tip{
+        value
+    }
+    items {
+
+        price{
+            value
+            currency{
+                enum
+            }
+        }
+        recipe {
+            prices{
+                warePriceType{
+                    enum
+                }
+                vat{
+                    vat
+                }
+            }
+            code
+            nameLabel
+            id
+            wareCategories{
+                nameLabel
+            }
+        }
+        covers{
+            price{
+                value
+            }
+            id
+            recipe{
+                prices{
+                    warePriceType{
+                        enum
+                    }
+
+                    vat{
+                        vat
+                    }
+                }
+            }
+        }
+        sideDishes {
+            price{
+                value
+
+            }
+            recipe {
+                code
+                nameLabel
+                id
+                prices{
+                    warePriceType{
+                        enum
+                    }
+                    vat{
+                        vat
+                    }
+                }
+            }
+        }
+    }
+    totalSum {
+        value
+        roundedValue
+        currency{
+            enum
+        }
+    }
+    totalDiscount {
+        value
+    }
+    discounts {
+        description
+        code
+        price {
+            value
+        }
+    }
+    transportFee{
+        value
+    }
+    orderPayments {
+        paymentMethod {
+            paymentType {
+                enum
+            }
+        }
+    }
+    invoiceSequenceResettable
+    sector{
+        name
+    }
+}
