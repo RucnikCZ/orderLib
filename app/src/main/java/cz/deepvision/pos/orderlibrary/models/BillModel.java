@@ -458,7 +458,11 @@ public class BillModel {
 
                     if (SettingsManager.getInstance().isPrintCoverBon()) {
                         for (OrderItem associated : item.getCover()) {
-                            String[] printAssociatedItem = new String[]{"+" + associated.getCount() + "x", associated.getName()};
+                            String[] printAssociatedItem = null;
+                            if (SettingsManager.getInstance().isPrintProductCodes())
+                                printAssociatedItem = new String[]{"","+" + associated.getCount() + "x", associated.getName()};
+                            else
+                                printAssociatedItem = new String[]{"+" + associated.getCount() + "x", associated.getName()};
                             printList.add(printAssociatedItem);
                         }
                     }
@@ -509,7 +513,7 @@ public class BillModel {
                     associatedSum = associated.getCount() * associated.getPrice();
                     String[] printAssociatedItem = null;
                     if (SettingsManager.getInstance().isPrintProductCodes())
-                        printAssociatedItem = new String[]{"","+" + associated.getCount() + "x", associated.getName() + "(" + String.format("%.2f", associated.getPrice()) + " " + BillManager.getInstance().getCurrency() + ")", String.format("%.2f", associatedSum) + BillManager.getInstance().getCurrency()};
+                        printAssociatedItem = new String[]{"", "+" + associated.getCount() + "x", associated.getName() + "(" + String.format("%.2f", associated.getPrice()) + " " + BillManager.getInstance().getCurrency() + ")", String.format("%.2f", associatedSum) + BillManager.getInstance().getCurrency()};
                     else
                         printAssociatedItem = new String[]{"+" + associated.getCount() + "x", associated.getName() + "(" + String.format("%.2f", associated.getPrice()) + " " + BillManager.getInstance().getCurrency() + ")", String.format("%.2f", associatedSum) + BillManager.getInstance().getCurrency()};
                     printList.add(printAssociatedItem);
