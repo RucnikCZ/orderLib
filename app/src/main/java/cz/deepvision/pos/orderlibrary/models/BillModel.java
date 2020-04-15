@@ -441,18 +441,18 @@ public class BillModel {
                 if (item.getCategory().equals(category)) {
                     String[] printItem = null;
                     if (SettingsManager.getInstance().isPrintProductCodes())
-                        printItem = new String[]{item.getCode(), item.getCount() + "x ", item.getName()};
+                        printItem = new String[]{item.getCode(), item.getCount() + "x " + item.getName()};
                     else
-                        printItem = new String[]{item.getCount() + "x", item.getName()};
+                        printItem = new String[]{item.getCount() + "x ", item.getName()};
 
                     printList.add(printItem);
 
                     for (OrderItem addition : item.getSideDish()) {
                         String[] printAdditionItem = null;
                         if (SettingsManager.getInstance().isPrintProductCodes())
-                            printAdditionItem = new String[]{addition.getCode(), "+" + addition.getCount() + "x", addition.getName(), "ADD"};
+                            printAdditionItem = new String[]{addition.getCode(), "+" + addition.getCount() + "x " + addition.getName(), "ADD"};
                         else
-                            printAdditionItem = new String[]{"+" + addition.getCount() + "x", addition.getName(), "ADD"};
+                            printAdditionItem = new String[]{"+ " + addition.getCount() + "x ", addition.getName(), "ADD"};
                         printList.add(printAdditionItem);
                     }
 
@@ -460,9 +460,9 @@ public class BillModel {
                         for (OrderItem associated : item.getCover()) {
                             String[] printAssociatedItem = null;
                             if (SettingsManager.getInstance().isPrintProductCodes())
-                                printAssociatedItem = new String[]{"","+" + associated.getCount() + "x", associated.getName()};
+                                printAssociatedItem = new String[]{"","+ " + associated.getCount() + "x "+ associated.getName()};
                             else
-                                printAssociatedItem = new String[]{"+" + associated.getCount() + "x", associated.getName()};
+                                printAssociatedItem = new String[]{"+ " + associated.getCount() + "x ", associated.getName()};
                             printList.add(printAssociatedItem);
                         }
                     }

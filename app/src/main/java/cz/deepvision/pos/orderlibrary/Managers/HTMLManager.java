@@ -113,7 +113,7 @@ public class HTMLManager {
             if (item.length == 1) {
                 this.mHTML.append("<tr><td colspan='4' style='text-align: center;font-weight:bold;font-size:20px'>" + item[0] + "</td></tr>");
             } else {
-                if ((SettingsManager.getInstance().isPrintProductCodes() & item.length == 3) || (SettingsManager.getInstance().isPrintProductCodes() & item.length == 4)) {
+                if (item.length == 3) {
                     String itemString = "<tr>" +
                             "<td style='text-align: left;font-weight:bold'>" + item[0] + "</td>" +
                             "<td style='text-align: left;'></td>" +
