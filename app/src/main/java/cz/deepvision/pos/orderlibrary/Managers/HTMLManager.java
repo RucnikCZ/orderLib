@@ -42,7 +42,7 @@ public class HTMLManager {
 
     public void printBitmap(String html, int zoom, BitmapGeneratingAsyncTask.Callback callback, PrintArguments arguments) {
         BillModel model = BillManager.getInstance().getCurrentBill();
-           generator = new BitmapGeneratingAsyncTask(SettingsManager.getCtx(), html, 580, callback, zoom, arguments, model);
+        generator = new BitmapGeneratingAsyncTask(SettingsManager.getCtx(), html, 580, callback, zoom, arguments, model);
         if (arguments.isReprint()) {
             if (SettingsManager.getInstance().isPrinter58mm() && !SettingsManager.getInstance().isPrinter80mm()) {
                 BitmapGeneratingAsyncTask generator58 = new BitmapGeneratingAsyncTask(SettingsManager.getCtx(), html, 384, callback, zoom, arguments, model);
@@ -132,13 +132,14 @@ public class HTMLManager {
                 }
             }
         }
-        this.mHTML.append("<div style='text-align: center; border-style: solid;'>" + "<div style='color: white; background-color: black; text-align: center;'>" + "Objednáno v: ").append(currentBill.getDate()).append("</div>").append("</div>");
-        this.mHTML.append("<br/>");
 
         this.mHTML.append("</tbody>" +
                 "</table>" +
                 "</div>" +
                 "<br/>");
+        this.mHTML.append("<div style='text-align: center; border-style: solid;'>" + "<div style='color: white; background-color: black; text-align: center;'>" + "Objednáno v: ").append(currentBill.getDate()).append("</div>").append("</div>");
+        this.mHTML.append("<br/>");
+
 
         String backColor = "white";
         String backColor2 = "black";
@@ -147,7 +148,7 @@ public class HTMLManager {
             backColor2 = "white";
         }
         if (!currentBill.getNote().equals("")) {
-            this.mHTML.append("<div style='text-align : center;border-style: solid;'>" + "<div style='background-color:'"+backColor2 +";color:'"+backColor+"';text-align: center;'>" + "Poznámka ").append("</div>").append("<table style='width: 100%;background-color:'"+backColor +";color:'"+backColor2+"''>").append("<tbody>").append("<tr>");
+            this.mHTML.append("<div style='text-align : center;border-style: solid;'>" + "<div style='background-color:'" + backColor2 + ";color:'" + backColor + "';text-align: center;'>" + "Poznámka ").append("</div>").append("<table style='width: 100%;background-color:'" + backColor + ";color:'" + backColor2 + "''>").append("<tbody>").append("<tr>");
             this.mHTML.append("<td style='text-align: left;font-size: 22px;'>").append(currentBill.getNote()).append("</td>").append("</tr>");
             this.mHTML.append("</tbody>" +
                     "</table>" +
@@ -222,7 +223,7 @@ public class HTMLManager {
                 "<td style='text-align: right;'>" + user.getFirstName() + " " + user.getLastName() + "</td>" +
                 "</tr>" +
                 "<tr>" +
-                "<td style='text-align: left;'>" + ctx.getString(R.string.create_order_run_cashier) + "</td>'" +
+                "<td style='text-align: left;'>" + ctx.getString(R.string.create_order_run_cashier) + "</td>" +
                 "<td style='text-align: right;'>" + company.getEstablishmentID() + "," + company.getPosID() + "</td>" +
                 "</tr>" +
                 "</tbody>" +
@@ -359,7 +360,7 @@ public class HTMLManager {
 
         this.mHTML.append("<div style='text-align: left;border: 1px solid black;'>" +
                 "<div style='color: white; background-color: black; text-align: center;'>" +
-                 ctx.getString(R.string.delivery_type)+ "<strong>" + deliveryTypeText + "</strong>" +
+                ctx.getString(R.string.delivery_type) + "<strong>" + deliveryTypeText + "</strong>" +
                 "</div><span style='font-size: 25px'>" +
                 bill.getName() + "<br/>" +
                 bill.getAddress() + "<br/>" +
@@ -408,7 +409,7 @@ public class HTMLManager {
             system = "SPEEDLO";
         }
         this.mHTML.append("<br/><br/>");
-        this.mHTML.append("<div style='text-align: center;'>" + ctx.getString(R.string.create_order_thank_you) + "<br/> Powered by " + system + " with \uD83D\uDDA4</div>");
+        this.mHTML.append("<div style='text-align: center;'>" + ctx.getString(R.string.app_name) + "<br/>" + ctx.getString(R.string.create_order_thank_you) + "<br/> Powered by " + system + " with \uD83D\uDDA4</div>");
     }
 
     private String formatDouble(Double value) {

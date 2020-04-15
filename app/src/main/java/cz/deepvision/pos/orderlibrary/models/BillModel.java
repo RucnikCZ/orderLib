@@ -492,7 +492,7 @@ public class BillModel {
                 productSum = item.getCount() * item.getPrice();
                 String[] printItem = null;
                 if (SettingsManager.getInstance().isPrintProductCodes())
-                    printItem = new String[]{item.getCode(), item.getCount() + "x" + item.getName() + "(" + String.format("%.2f", item.getPrice()) + BillManager.getInstance().getCurrency() + ")", String.format("%.2f", productSum) + " " + BillManager.getInstance().getCurrency()};
+                    printItem = new String[]{item.getCode(), item.getCount() + "x " + item.getName() + "(" + String.format("%.2f", item.getPrice()) + BillManager.getInstance().getCurrency() + ")", String.format("%.2f", productSum) + " " + BillManager.getInstance().getCurrency()};
                 else
                     printItem = new String[]{item.getCount() + "x", item.getName() + "(" + String.format("%.2f", item.getPrice()) + BillManager.getInstance().getCurrency() + ")", String.format("%.2f", productSum) + " " + BillManager.getInstance().getCurrency()};
                 printList.add(printItem);
@@ -502,7 +502,7 @@ public class BillModel {
                     additionSum = addition.getCount() * addition.getPrice();
                     String[] printAdditionItem = null;
                     if (SettingsManager.getInstance().isPrintProductCodes())
-                        printAdditionItem = new String[]{addition.getCode(), "+" + addition.getCount() + "x" + addition.getName() + "(" + String.format("%.2f", addition.getPrice()) + BillManager.getInstance().getCurrency() + " )", String.format("%.2f", additionSum) + BillManager.getInstance().getCurrency()};
+                        printAdditionItem = new String[]{addition.getCode(), "+ " + addition.getCount() + "x" + addition.getName() + "(" + String.format("%.2f", addition.getPrice()) + BillManager.getInstance().getCurrency() + " )", String.format("%.2f", additionSum) + BillManager.getInstance().getCurrency()};
                     else
                         printAdditionItem = new String[]{"+" + addition.getCount() + "x", addition.getName() + "(" + String.format("%.2f", addition.getPrice()) + BillManager.getInstance().getCurrency() + " )", String.format("%.2f", additionSum) + BillManager.getInstance().getCurrency()};
                     printList.add(printAdditionItem);
@@ -513,7 +513,7 @@ public class BillModel {
                     associatedSum = associated.getCount() * associated.getPrice();
                     String[] printAssociatedItem = null;
                     if (SettingsManager.getInstance().isPrintProductCodes())
-                        printAssociatedItem = new String[]{"", "+" + associated.getCount() + "x", associated.getName() + "(" + String.format("%.2f", associated.getPrice()) + " " + BillManager.getInstance().getCurrency() + ")", String.format("%.2f", associatedSum) + BillManager.getInstance().getCurrency()};
+                        printAssociatedItem = new String[]{"", "+" + associated.getCount() + "x "+ associated.getName() + "(" + String.format("%.2f", associated.getPrice()) + " " + BillManager.getInstance().getCurrency() + ")", String.format("%.2f", associatedSum) + BillManager.getInstance().getCurrency()};
                     else
                         printAssociatedItem = new String[]{"+" + associated.getCount() + "x", associated.getName() + "(" + String.format("%.2f", associated.getPrice()) + " " + BillManager.getInstance().getCurrency() + ")", String.format("%.2f", associatedSum) + BillManager.getInstance().getCurrency()};
                     printList.add(printAssociatedItem);
