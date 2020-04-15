@@ -113,7 +113,7 @@ public class HTMLManager {
             if (item.length == 1) {
                 this.mHTML.append("<tr><td colspan='4' style='text-align: center;font-weight:bold;font-size:20px'>" + item[0] + "</td></tr>");
             } else {
-                if (item.length == 3) {
+                if ((SettingsManager.getInstance().isPrintProductCodes() & item.length == 3) || (SettingsManager.getInstance().isPrintProductCodes() & item.length == 4)) {
                     String itemString = "<tr>" +
                             "<td style='text-align: left;font-weight:bold'>" + item[0] + "</td>" +
                             "<td style='text-align: left;'></td>" +
@@ -256,7 +256,7 @@ public class HTMLManager {
                         "<td style='text-align: left;'>" + item[0] + "</td>" +
                         "<td style='text-align: left;'></td>" +
                         "<td style='text-align: left;'>" + item[1] + "</td>" +
-                        "<td style='text-align: right;'>" + item[2] + "</td>" +
+                        "<td style='text-align: right;white-space:nowrap;'>" + item[2] + "</td>" +
                         "</tr>";
                 this.mHTML.append(itemString);
             }
@@ -267,7 +267,7 @@ public class HTMLManager {
                     "<td style='text-align: left;'></td>" +
                     "<td style='text-align: left;'></td>" +
                     "<td style='text-align: left;'>" + discountModel.getDescription() + "</td>" +
-                    "<td style='text-align: right;'>" + formatDouble(discountModel.getValue()) + BillManager.getInstance().getCurrency() + " </td>" +
+                    "<td style='text-align: right;white-space:nowrap;'>" + formatDouble(discountModel.getValue()) + BillManager.getInstance().getCurrency() + " </td>" +
                     "</tr>");
         }
         if (currentBill.getTransport() != null) {
@@ -275,7 +275,7 @@ public class HTMLManager {
                     "<td style='text-align: left;'></td>" +
                     "<td style='text-align: left;'></td>" +
                     "<td style='text-align: left;'>" + currentBill.getTransport().getName() + "</td>" +
-                    "<td style='text-align: right;'>" + formatDouble(currentBill.getTransport().getPrice()) + BillManager.getInstance().getCurrency() + " </td>" +
+                    "<td style='text-align: right;white-space:nowrap;'>" + formatDouble(currentBill.getTransport().getPrice()) + BillManager.getInstance().getCurrency() + " </td>" +
                     "</tr>");
         }
         if (currentBill.getTip() != null) {
@@ -283,7 +283,7 @@ public class HTMLManager {
                     "<td style='text-align: left;'></td>" +
                     "<td style='text-align: left;'></td>" +
                     "<td style='text-align: left;'>" + currentBill.getTip().getName() + "</td>" +
-                    "<td style='text-align: right;'>" + formatDouble((currentBill.getTip().getPrice())) + " " + BillManager.getInstance().getCurrency() + " </td>" +
+                    "<td style='text-align: right;white-space:nowrap;'>" + formatDouble((currentBill.getTip().getPrice())) + " " + BillManager.getInstance().getCurrency() + " </td>" +
                     "</tr>");
         }
         this.mHTML.append("</tbody>" +
