@@ -135,8 +135,7 @@ public class HTMLManager {
 
         this.mHTML.append("</tbody>" +
                 "</table>" +
-                "</div>" +
-                "<br/>");
+                "</div>");
         this.mHTML.append("<div style='text-align: center; border-style: solid;'>" + "<div style='color: white; background-color: black; text-align: center;'>" + "Objednáno v: ").append(currentBill.getDate()).append("</div>").append("</div>");
         this.mHTML.append("<br/>");
 
@@ -365,7 +364,7 @@ public class HTMLManager {
                 bill.getName() + "<br/>" +
                 bill.getAddress() + "<br/>" +
                 "<strong>" + bill.getPhone() + "</strong><br />" +
-                (!(bill.getNote().equals("")) ? ctx.getString(R.string.create_order_note) + ": " + bill.getNote() : "") +
+                (!(bill.getNote().equals("")) ? bill.getNote() : "") +
                 "</span>" +
                 "</div>");
 
