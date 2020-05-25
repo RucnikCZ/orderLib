@@ -97,7 +97,7 @@ public class HTMLManager {
             String sector = currentBill.getSectorPlace();
             String recycledID = currentBill.getRecyclereceiptID();
             this.mHTML.append("</br></br></br></br>");
-            this.mHTML.append("<div style='text-align: center;color: black; background-color: white;font-size: 35px;border: 1px solid black;'>");
+            this.mHTML.append("<div style='text-align: center;color: black; background-color: white;font-size: 35px;'>");
             this.mHTML.append("<strong>").append(recycledID).append("</strong>").append("<br/>");
             this.mHTML.append("<strong>").append(sector).append("</strong>");
             this.mHTML.append("</div>");
@@ -105,7 +105,7 @@ public class HTMLManager {
             this.mHTML.append("<div style='height:160px;'></div>");
         }
 
-        this.mHTML.append("<div style='text-align: center;border: 1px solid black;'>" +
+        this.mHTML.append("<div style='text-align: center;border: 2px solid black;'>" +
                 "<div style='color: white; background-color: black; text-nalign: center;'>"
                 + ctx.getString(R.string.create_order_order) + " ").append(currentBill.getId()).append("</div>").append("<table style='width: 100%;font-size: 25px;'>").append("<tbody>");
 
@@ -200,7 +200,7 @@ public class HTMLManager {
             user = SettingsManager.getInstance().getUser(EnumUtil.SystemType.SPEEDLO);
         }
         Context ctx = SettingsManager.getCtx();
-        this.mHTML.append("<div style='text-align: center;border: 1px solid black;'>" +
+        this.mHTML.append("<div style='text-align: center;border: 2px solid black;'>" +
                 "<div style='color: white; background-color: black; text-align: center;'>" +
                 ctx.getString(R.string.create_order_ticket_number) + " " + bill.getId() +
                 "</div>" +
@@ -235,7 +235,7 @@ public class HTMLManager {
         Context ctx = SettingsManager.getCtx();
         BillModel currentBill = BillManager.getInstance().getCurrentBill();
 
-        this.mHTML.append("<div style='text-align: center;border: 1px solid black;'>" +
+        this.mHTML.append("<div style='text-align: center;border: 2px solid black;'>" +
                 "<div style='color: white; background-color: black; text-align: center;'>" +
                 ctx.getString(R.string.create_order_order) + " " + currentBill.getId() +
                 "</div>" +
@@ -299,7 +299,7 @@ public class HTMLManager {
         if (!currentBill.getPrice().isEmpty()) {
             billPrice = currentBill.getPrice();
         }
-        this.mHTML.append("<div style='text-align: left; border_left-style: solid;border: 1px solid black;'>" +
+        this.mHTML.append("<div style='text-align: left; border_left-style: solid;border: 2px solid black;'>" +
                 "<div style='color: white; background-color: black; text-align: center;'>" +
                 ctx.getString(R.string.create_order_payment) +
                 "<strong>" + (currentBill.getPayment().equals(EnumUtil.PaymentType.CASH) ? ctx.getString(R.string.html_cash) : ctx.getString(R.string.html_card)) + "</strong>" +
@@ -357,7 +357,7 @@ public class HTMLManager {
         BillModel bill = BillManager.getInstance().getCurrentBill();
         String deliveryTypeText = bill.getDeliveryType().equals(EnumUtil.DeliveryType.MESSENGER) ? ctx.getString(R.string.html_delivery) : ctx.getString(R.string.html_personal_pick);
 
-        this.mHTML.append("<div style='text-align: left;border: 1px solid black;'>" +
+        this.mHTML.append("<div style='text-align: left;border: 2px solid black;'>" +
                 "<div style='color: white; background-color: black; text-align: center;'>" +
                 ctx.getString(R.string.delivery_type) + "<strong>" + deliveryTypeText + "</strong>" +
                 "</div><span style='font-size: 25px'>" +

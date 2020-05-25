@@ -384,16 +384,13 @@ public class BillModel {
     //TODo : fix obaly
     public void addItem(OrderItem newItem) {
         for (OrderItem oldItem : this.items) {
-            if (oldItem.getName().equals(newItem.getName())) {
+            if (oldItem.getCode().equals(newItem.getCode())) {
                 if (oldItem.getSideDish().size() == newItem.getSideDish().size() && (newItem.getSideDish().size() == 0)) {
-                    if (oldItem.getCover().size() == newItem.getCover().size()) {
-                        if (oldItem.getCover().size() == 0) {
-                            oldItem.setCount(oldItem.getCount() + 1);
-                            return;
-                        } else {
-
-                        }
+                    oldItem.setCount(oldItem.getCount() + 1);
+                    for (OrderItem coverItem : oldItem.getCover()) {
+                        coverItem.setCount(oldItem.getCount());
                     }
+                    return;
                 }
             }
         }
@@ -402,7 +399,7 @@ public class BillModel {
 
     public void addSideDish(OrderItem main, OrderItem secondary) {
         for (OrderItem sideDish : main.getSideDish()) {
-            if (sideDish.getName().equals(secondary.getName())) {
+            if (sideDish.getCode().equals(secondary.getCode())) {
                 sideDish.setCount(sideDish.getCount() + 1);
                 return;
             }
@@ -460,7 +457,7 @@ public class BillModel {
                         for (OrderItem associated : item.getCover()) {
                             String[] printAssociatedItem = null;
                             if (SettingsManager.getInstance().isPrintProductCodes())
-                                printAssociatedItem = new String[]{"","+ " + associated.getCount() + "x "+ associated.getName()};
+                                printAssociatedItem = new String[]{"", "+ " + associated.getCount() + "x " + associated.getName()};
                             else
                                 printAssociatedItem = new String[]{"+ " + associated.getCount() + "x ", associated.getName()};
                             printList.add(printAssociatedItem);
@@ -513,7 +510,7 @@ public class BillModel {
                     associatedSum = associated.getCount() * associated.getPrice();
                     String[] printAssociatedItem = null;
                     if (SettingsManager.getInstance().isPrintProductCodes())
-                        printAssociatedItem = new String[]{"", "+" + associated.getCount() + "x "+ associated.getName() + "(" + String.format("%.2f", associated.getPrice()) + " " + BillManager.getInstance().getCurrency() + ")", String.format("%.2f", associatedSum) + BillManager.getInstance().getCurrency()};
+                        printAssociatedItem = new String[]{"", "+" + associated.getCount() + "x " + associated.getName() + "(" + String.format("%.2f", associated.getPrice()) + " " + BillManager.getInstance().getCurrency() + ")", String.format("%.2f", associatedSum) + BillManager.getInstance().getCurrency()};
                     else
                         printAssociatedItem = new String[]{"+" + associated.getCount() + "x", associated.getName() + "(" + String.format("%.2f", associated.getPrice()) + " " + BillManager.getInstance().getCurrency() + ")", String.format("%.2f", associatedSum) + BillManager.getInstance().getCurrency()};
                     printList.add(printAssociatedItem);
@@ -612,6 +609,7 @@ public class BillModel {
             }
         }
 
+        VatModel toRemove = null;
         for (VatModel vatPrice : currentBill.getVatPrices()) {
             double total = vatPrice.getSum();
             if (total != 0.00) {
@@ -620,8 +618,11 @@ public class BillModel {
                 double vatBase = RoundTo2Decimals(total - vat);
                 vatPrice.setBaseDPH(vatBase);
                 vatPrice.setDphRest(vat);
+            } else {
+                toRemove = vatPrice;
             }
         }
+        vatPrices.remove(toRemove);
     }
 
     double RoundTo2Decimals(double val) {
