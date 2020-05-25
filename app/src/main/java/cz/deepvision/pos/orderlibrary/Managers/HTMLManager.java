@@ -147,7 +147,7 @@ public class HTMLManager {
             backColor2 = "white";
         }
         if (!currentBill.getNote().equals("")) {
-            this.mHTML.append("<div style='text-align : center;border-style: solid;'>" + "<div style='background-color:'" + backColor2 + ";color:'" + backColor + "';text-align: center;'>" + "Poznámka ").append("</div>").append("<table style='width: 100%;background-color:'" + backColor + ";color:'" + backColor2 + "''>").append("<tbody>").append("<tr>");
+            this.mHTML.append("<div style='text-align : center;border-style: solid;'>" + "<div style='background-color:" + backColor2 + ";color:" + backColor + ";text-align: center;'>" + "Poznámka ").append("</div>").append("<table style='width: 100%;background-color:" + backColor + ";color:" + backColor2 + ";'>").append("<tbody>").append("<tr>");
             this.mHTML.append("<td style='text-align: left;font-size: 22px;'>").append(currentBill.getNote()).append("</td>").append("</tr>");
             this.mHTML.append("</tbody>" +
                     "</table>" +
