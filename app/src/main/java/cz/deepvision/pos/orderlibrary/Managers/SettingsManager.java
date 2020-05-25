@@ -2,6 +2,8 @@ package cz.deepvision.pos.orderlibrary.Managers;
 
 import android.content.Context;
 
+import java.util.ArrayList;
+
 import cz.deepvision.pos.orderlibrary.models.CompanyModel;
 import cz.deepvision.pos.orderlibrary.models.SettingsModel;
 import cz.deepvision.pos.orderlibrary.models.UserModel;
@@ -84,11 +86,11 @@ public class SettingsManager {
 
     }
 
-    public CompanyModel getCompany() {
+    public ArrayList<CompanyModel> getCompany() {
         return getSettings().getCompany();
     }
 
-    public void setCompany(CompanyModel company) {
+    public void setCompany(ArrayList<CompanyModel> company) {
         getSettings().setCompany(company);
 
     }

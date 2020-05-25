@@ -1,14 +1,15 @@
 package cz.deepvision.pos.orderlibrary.models;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import cz.deepvision.pos.orderlibrary.graphql.UserQuery;
 import cz.deepvision.pos.orderlibrary.utils.EnumUtil;
 
 public class SettingsModel {
     private EnumUtil.PriceType deliveryType = EnumUtil.PriceType.DELIVERY;
-    private CompanyModel company;
+    private ArrayList<CompanyModel> company;
     private boolean enigooEnabled = false;
     private boolean speedloEnabled = false;
     private boolean customDataEnabled = false;
@@ -60,11 +61,11 @@ public class SettingsModel {
         this.printer80mm = printer80mm;
     }
 
-    public CompanyModel getCompany() {
+    public ArrayList<CompanyModel> getCompany() {
         return company;
     }
 
-    public void setCompany(CompanyModel company) {
+    public void setCompany(ArrayList<CompanyModel> company) {
         this.company = company;
     }
 
