@@ -8,6 +8,6 @@ query remoteOrders($branchIDs: [ID!], $orderStates: [OrderStateCategoryEnum!]) {
         }
 
     ) {
-        ...genericOrder
+        id
     }
 }

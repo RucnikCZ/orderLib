@@ -1,6 +1,9 @@
 query remoteOrder($id: ID!){
     singleOrder: order(id : $id)
     {
+        companyBranch{
+            id
+        }
         ...genericOrder
     }
 
