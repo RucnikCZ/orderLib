@@ -119,6 +119,12 @@ public class HTMLManager {
                             "<td style='text-align: left;font-weight:bold'>" + item[1] + "</td>" +
                             "</tr>";
                     this.mHTML.append(itemString);
+                } else {
+                    String itemString = "<tr>" +
+                            "<td style='text-align: left;'>" + item[0] + "</td>" +
+                            "<td style='text-align: left;'>" + item[1] + "</td>" +
+                            "</tr>";
+                    this.mHTML.append(itemString);
                 }
             }
         }
