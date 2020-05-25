@@ -118,7 +118,7 @@ public class HTMLManager {
                             "<td style='text-align: left;font-weight:bold'>" + item[0] + "</td>" +
                             "<td style='text-align: left;'></td>" +
                             "<td style='text-align: left;font-weight:bold'>" + item[1] + "</td>" +
-                            "<td style='text-align: right;white-space:nowrap;'>/td>" +
+                            "<td style='text-align: right;white-space:nowrap;'></td>" +
                             "</tr>";
                     this.mHTML.append(itemString);
                 } else {
@@ -126,7 +126,7 @@ public class HTMLManager {
                             "<td style='text-align: left;'>" + item[0] + "</td>" +
                             "<td style='text-align: left;'></td>" +
                             "<td style='text-align: left;'>" + item[1] + "</td>" +
-                            "<td style='text-align: right;white-space:nowrap;'>/td>" +
+                            "<td style='text-align: right;white-space:nowrap;'></td>" +
                             "</tr>";
                     this.mHTML.append(itemString);
                 }
