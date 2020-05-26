@@ -107,22 +107,22 @@ public class HTMLManager {
 
         this.mHTML.append("<div style='text-align: center;border: 2px solid black;'>" +
                 "<div style='color: white; background-color: black; text-nalign: center;'>"
-                + ctx.getString(R.string.create_order_order) + " ").append(currentBill.getId()).append("</div>").append("<table style='width: 100%;font-size: 25px;'>").append("<tbody>");
+                + ctx.getString(R.string.create_order_order) + " ").append(currentBill.getId()).append("</div>").append("<table style='width: 100%;font-size: 25px;table-layout:fixed;'>").append("<tbody>");
 
         for (String[] item : currentBill.getSimpleBillItems()) {
             if (item.length == 1) {
-                this.mHTML.append("<tr><td colspan='4' style='text-align: center;font-weight:bold;font-size:20px'>" + item[0] + "</td></tr>");
+                this.mHTML.append("<tr><td colspan='6' style='text-align: center;font-weight:bold;font-size:20px'>" + item[0] + "</td></tr>");
             } else {
                 if (item.length == 3) {
                     String itemString = "<tr>" +
-                            "<td colspan='3'style='text-align: left;font-weight:bold'>" + item[0] + "</td>" +
-                            "<td  style='text-align: left;font-weight:bold'>" + item[1] + "</td>" +
+                            "<td style='text-align: left;font-weight:bold'>" + item[0] + "</td>" +
+                            "<td colspan='5' style='text-align: left;font-weight:bold'>" + item[1] + "</td>" +
                             "</tr>";
                     this.mHTML.append(itemString);
                 } else {
                     String itemString = "<tr>" +
-                            "<td colspan='2' style='text-align: left;'>" + item[0] + "</td>" +
-                            "<td colspan='2' style='text-align: left;'>" + item[1] + "</td>" +
+                            "<td style='text-align: left;'>" + item[0] + "</td>" +
+                            "<td colspan='5' style='text-align: left;'>" + item[1] + "</td>" +
                             "</tr>";
                     this.mHTML.append(itemString);
                 }
