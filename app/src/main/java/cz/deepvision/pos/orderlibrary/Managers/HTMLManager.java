@@ -107,7 +107,7 @@ public class HTMLManager {
 
         this.mHTML.append("<div style='text-align: center;border: 2px solid black;'>" +
                 "<div style='color: white; background-color: black; text-nalign: center;'>"
-                + ctx.getString(R.string.create_order_order) + " ").append(currentBill.getId()).append("</div>").append("<table style='width: 100%;font-size: 25px;table-layout:fixed;'>").append("<tbody>");
+                + ctx.getString(R.string.create_order_order) + " ").append(currentBill.getId()).append("</div>").append("<table style='width: 100%;font-size: 25px;'>").append("<tbody>");
 
         for (String[] item : currentBill.getSimpleBillItems()) {
             if (item.length == 1) {
