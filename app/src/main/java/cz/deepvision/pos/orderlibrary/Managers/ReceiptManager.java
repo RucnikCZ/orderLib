@@ -1,8 +1,11 @@
 package cz.deepvision.pos.orderlibrary.Managers;
 
+import java.util.Set;
+
 import cz.deepvision.pos.orderlibrary.graphql.type.OrderOriginEnum;
 import cz.deepvision.pos.orderlibrary.graphql.type.OrderStateCategoryEnum;
 import cz.deepvision.pos.orderlibrary.models.PrintArguments;
+import cz.deepvision.pos.orderlibrary.models.SettingsModel;
 import cz.deepvision.pos.orderlibrary.utils.BitmapGeneratingAsyncTask;
 
 public class ReceiptManager {
@@ -45,9 +48,10 @@ public class ReceiptManager {
         HTMLManager.getInstance().printBitmap(recipeHTML, 150, callback, arguments);
         BillManager.getInstance().getCurrentBill().setRecipeHTML(recipeHTML);
 
-
-        String bonHTML = HTMLManager.getInstance().generateHTMLForKitchenTicket();
-        HTMLManager.getInstance().printBitmap(bonHTML, 150, callback, arguments);
-        BillManager.getInstance().getCurrentBill().setRecipeHTML(bonHTML);
+        if (SettingsManager.getInstance().isPrintKitchenTicketEnabled()) {
+            String bonHTML = HTMLManager.getInstance().generateHTMLForKitchenTicket();
+            HTMLManager.getInstance().printBitmap(bonHTML, 150, callback, arguments);
+            BillManager.getInstance().getCurrentBill().setRecipeHTML(bonHTML);
+        }
     }
 }

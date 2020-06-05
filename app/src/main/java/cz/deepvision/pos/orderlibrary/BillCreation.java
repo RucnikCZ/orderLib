@@ -306,14 +306,8 @@ public class BillCreation {
                     bill.setHasReceipt(true);
                     if (SettingsManager.getInstance().isPrintKitchenTicketEnabled()) {
                         printKitchenTicket(order, isKitchenPrinted);
-                        if (SettingsManager.getInstance().isPrintKitchenTicket2Times())
-                            printKitchenTicket(order, isKitchenPrinted);
-
                     }
                     printReceipt(order, isTicketPrinted);
-                    if (SettingsManager.getInstance().isPrintRecipe2Times())
-                        printReceipt(order, isTicketPrinted);
-
                 }
             }
         } else {
