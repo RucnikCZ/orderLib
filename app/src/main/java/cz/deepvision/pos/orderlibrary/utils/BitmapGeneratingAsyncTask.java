@@ -44,7 +44,7 @@ public class BitmapGeneratingAsyncTask extends AsyncTask<Void, Void, Bitmap> {
                 .setMeasureDelay(10)
                 .setScreenshotDelay(10)
                 .setStrictMode(true)
-                .setTimeout(5)
+                .setTimeout(15)
                 .setTextZoom(zoom)
                 .setConfigurator(BitmapUtil.getHtml2BitmapConfigurator(zoom))
                 .build();
