@@ -169,7 +169,7 @@ public class BillCreation {
         if(order.extraCharge().value() != 0.0 ){
             VatModel vat = new VatModel(21.0);
             bill.getVatPrices().add(vat);
-            OrderItem extraCharge = new OrderItem(1, SettingsManager.getCtx().getString(R.string.order_tip), order.extraCharge().value(), vat.getVatPricing());
+            OrderItem extraCharge = new OrderItem(1, SettingsManager.getCtx().getString(R.string.extra_charge), order.extraCharge().value(), vat.getVatPricing());
             BillManager.getInstance().getCurrentBill().setExtraCharge(extraCharge);
         }
         // Nastavení adresy a informací o klientovi

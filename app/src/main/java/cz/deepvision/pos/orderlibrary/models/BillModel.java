@@ -574,6 +574,13 @@ public class BillModel {
                 vat.setSum(vat.getSum() + tmp);
             }
         }
+        if (currentBill.getExtraCharge() != null) {
+            VatModel vat = currentBill.getCorrespondingVatPricing(currentBill.getExtraCharge().getVatPrice());
+            for (Integer i = 0; i < currentBill.getExtraCharge().getCount(); i++) {
+                Double tmp = Double.valueOf(currentBill.getExtraCharge().getPrice());
+                vat.setSum(vat.getSum() + tmp);
+            }
+        }
 
         for (VatModel vatPrice : currentBill.getVatPrices()) {
             if (vatPrice.getVatPricing() == 00.0) {
