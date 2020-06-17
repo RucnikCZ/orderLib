@@ -166,6 +166,12 @@ public class BillCreation {
             OrderItem tip = new OrderItem(1, SettingsManager.getCtx().getString(R.string.order_tip), order.tip().value(), vat.getVatPricing());
             BillManager.getInstance().getCurrentBill().setTip(tip);
         }
+        if(order.extraCharge().value() != 0.0 ){
+            VatModel vat = new VatModel(21.0);
+            bill.getVatPrices().add(vat);
+            OrderItem extraCharge = new OrderItem(1, SettingsManager.getCtx().getString(R.string.order_tip), order.extraCharge().value(), vat.getVatPricing());
+            BillManager.getInstance().getCurrentBill().setExtraCharge(extraCharge);
+        }
         // Nastavení adresy a informací o klientovi
         bill.setAddress(order.address().street() + " " + order.address().houseNumber() + ", " + order.address().city());
 

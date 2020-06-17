@@ -143,6 +143,9 @@ fragment genericOrder on Order{
     transportFee{
         value
     }
+    extraCharge{
+        value
+    }
     orderPayments {
         paymentMethod {
             paymentType {

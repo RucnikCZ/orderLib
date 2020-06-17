@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">OrderCreationLib</string>
     <string name="order_tip">Tip</string>
+    <string name="extra_charge">Extra poplatek</string>
     <string name="delivery_type">Doručení:</string>
     <string name="html_delivery">POSLÍČEK</string>
     <string name="html_personal_pick">OSOBNÍ ODBĚR</string>

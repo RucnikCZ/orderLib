@@ -3,12 +3,17 @@
   "schemaPath": "schema.json",
   "extensions": {
     "endpoints": {
-      "Default GraphQL Endpoint": {
+      "Production": {
         "url": "https://c2e-p1.deep-vision.cloud/graphql",
         "headers": {
           "user-agent": "JS GraphQL",
-          "Authorization": "token eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1OTUsImF1dGhlbnRpY2F0aW9uX3Rva2VuIjoiQllZczZXendwZ1JPbDhvWGZqVEdOd3R0IiwiaWF0IjoyNjg4NzIyNTYsImp0aSI6IjJhYTI5YTJkNDhmZGNkNTQ3MGE0ODMxZmY1N2E0MDk0In0.rdOu66BQNtOy6wNQgYZ3aS29MTRdDjdjEz3uEPKwy-c"
-
+          "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo2MCwiYXV0aGVudGljYXRpb25fdG9rZW4iOm51bGwsImlhdCI6NDc3ODgxNTIsImp0aSI6IjAyZmFiYWFkZWI3Y2Y2MjRjMGFmNTI1ZjljNThhNjIxIn0.B9tZAzwZ6-Yqg4IyFDkLD8R56h4QWI1tod_xCae9Z9A"
+        },
+        "subscription": {
+          "url": "wss://c2e-p1.deep-vision.cloud/cable",
+          "connectionParams": {
+            "token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo2MCwiYXV0aGVudGljYXRpb25fdG9rZW4iOm51bGwsImlhdCI6NDc3ODgxNTIsImp0aSI6IjAyZmFiYWFkZWI3Y2Y2MjRjMGFmNTI1ZjljNThhNjIxIn0.B9tZAzwZ6-Yqg4IyFDkLD8R56h4QWI1tod_xCae9Z9A"
+          }
         },
         "introspect": false
       }

@@ -38,6 +38,7 @@ public class BillModel {
     private String receiptID = "";
     private String recyclereceiptID = "";
     private OrderItem tip = null;
+    private OrderItem extraCharge = null;
     private String sectorPlace = "";
     private OrderOriginEnum orderType = OrderOriginEnum.$UNKNOWN;
     private String receiptDate = "";
@@ -332,6 +333,14 @@ public class BillModel {
         return vatPrices;
     }
 
+    public OrderItem getExtraCharge() {
+        return extraCharge;
+    }
+
+    public void setExtraCharge(OrderItem extraCharge) {
+        this.extraCharge = extraCharge;
+    }
+
     public String getRecyclereceiptID() {
         return recyclereceiptID;
     }
@@ -499,7 +508,7 @@ public class BillModel {
                     additionSum = addition.getCount() * addition.getPrice();
                     String[] printAdditionItem = null;
                     if (SettingsManager.getInstance().isPrintProductCodes())
-                        printAdditionItem = new String[]{addition.getCode(), "+ " + addition.getCount() + "x" + addition.getName() + "(" + String.format("%.2f", addition.getPrice()) + BillManager.getInstance().getCurrency() + ")", String.format("%.2f", additionSum) + BillManager.getInstance().getCurrency()};
+                        printAdditionItem = new String[]{addition.getCode(), "+ " + addition.getCount() + "x " + addition.getName() + "(" + String.format("%.2f", addition.getPrice()) + BillManager.getInstance().getCurrency() + ")", String.format("%.2f", additionSum) + BillManager.getInstance().getCurrency()};
                     else
                         printAdditionItem = new String[]{"+" + addition.getCount() + "x", addition.getName() + "(" + String.format("%.2f", addition.getPrice()) + BillManager.getInstance().getCurrency() + ")", String.format("%.2f", additionSum) + BillManager.getInstance().getCurrency()};
                     printList.add(printAdditionItem);
