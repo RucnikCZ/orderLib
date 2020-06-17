@@ -282,6 +282,14 @@ public class HTMLManager {
                     "<td style='text-align: right;white-space:nowrap;'>" + formatDouble((currentBill.getTip().getPrice())) + " " + BillManager.getInstance().getCurrency() + " </td>" +
                     "</tr>");
         }
+        if(currentBill.getExtraCharge() != null){
+            this.mHTML.append("<tr>" +
+                    "<td style='text-align: left;'></td>" +
+                    "<td style='text-align: left;'></td>" +
+                    "<td style='text-align: left;'>" + currentBill.getExtraCharge().getName() + "</td>" +
+                    "<td style='text-align: right;white-space:nowrap;'>" + formatDouble((currentBill.getExtraCharge().getPrice())) + " " + BillManager.getInstance().getCurrency() + " </td>" +
+                    "</tr>");
+        }
         this.mHTML.append("</tbody>" +
                 "</table>" +
                 "</div>" +
