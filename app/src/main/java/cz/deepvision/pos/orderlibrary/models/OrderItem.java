@@ -9,7 +9,7 @@ public class OrderItem {
     private Integer count;
     private String name;
     private Double price;
-    private String note;
+    private String note = "";
     private String code;
     private List<OrderItem> sideDishes = new ArrayList<>();
     private List<OrderItem> cover = new ArrayList<>();
