@@ -452,6 +452,11 @@ public class BillModel {
                         printItem = new String[]{item.getCount() + "x ", item.getName()};
 
                     printList.add(printItem);
+                    if (!item.getNote().equals("")) {
+                        printItem = new String[]{"", item.getNote()};
+                        printList.add(printItem);
+
+                    }
 
                     for (OrderItem addition : item.getSideDish()) {
                         String[] printAdditionItem = null;
@@ -503,6 +508,11 @@ public class BillModel {
                     printItem = new String[]{item.getCount() + "x", item.getName() + "(" + String.format("%.2f", item.getPrice()) + BillManager.getInstance().getCurrency() + ")", String.format("%.2f", productSum) + " " + BillManager.getInstance().getCurrency()};
                 printList.add(printItem);
 
+                if (!item.getNote().equals("")) {
+                    printItem = new String[]{"", item.getNote()};
+                    printList.add(printItem);
+
+                }
                 for (OrderItem addition : item.getSideDish()) {
                     double additionSum;
                     additionSum = addition.getCount() * addition.getPrice();

@@ -110,12 +110,12 @@ public class BillCreation {
         for (GenericOrder.Item product : order.items()) {
             bill.addCategory(product.recipe().wareCategories().get(0).nameLabel());
             VatModel vat = new VatModel(getCorrectPriceOrderItem(product));
-            OrderItem orderItem = new OrderItem(1, product.recipe().nameLabel(), product.price().value(), vat.getVatPricing(), product.recipe().code(), product.recipe().wareCategories().get(0).nameLabel());
+            OrderItem orderItem = new OrderItem(1, product.recipe().nameLabel(), product.price().value(), vat.getVatPricing(), product.recipe().code(), product.recipe().wareCategories().get(0).nameLabel(),product.recipe().internalNote());
             bill.getVatPrices().add(vat);
 
             for (GenericOrder.SideDish sideDish : product.sideDishes()) {
                 vat = new VatModel(getCorrectPriceSideDish(sideDish));
-                OrderItem extra = new OrderItem(1, sideDish.recipe().nameLabel(), sideDish.price().value(), vat.getVatPricing(), sideDish.recipe().code(), "");
+                OrderItem extra = new OrderItem(1, sideDish.recipe().nameLabel(), sideDish.price().value(), vat.getVatPricing(), sideDish.recipe().code(), "","");
                 bill.addSideDish(orderItem, extra);
                 bill.getVatPrices().add(vat);
 

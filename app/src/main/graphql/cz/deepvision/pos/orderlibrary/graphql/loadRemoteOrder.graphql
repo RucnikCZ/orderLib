@@ -79,6 +79,7 @@ fragment genericOrder on Order{
                     vat
                 }
             }
+            internalNote
             code
             nameLabel
             id

@@ -9,6 +9,7 @@ public class OrderItem {
     private Integer count;
     private String name;
     private Double price;
+    private String note;
     private String code;
     private List<OrderItem> sideDishes = new ArrayList<>();
     private List<OrderItem> cover = new ArrayList<>();
@@ -23,11 +24,12 @@ public class OrderItem {
         this.category = "";
     }
 
-    public OrderItem(Integer count, String name, Double price, Double vat, String code, String category) {
+    public OrderItem(Integer count, String name, Double price, Double vat, String code, String category,String note) {
         this.count = count;
         this.name = name;
         this.price = price;
         this.vatPrice = vat;
+        this.note = note;
         this.code = code;
         this.category = category;
     }
@@ -96,6 +98,14 @@ public class OrderItem {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 
     @Override
