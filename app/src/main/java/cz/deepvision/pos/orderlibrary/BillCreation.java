@@ -110,12 +110,14 @@ public class BillCreation {
         for (GenericOrder.Item product : order.items()) {
             bill.addCategory(product.recipe().wareCategories().get(0).nameLabel());
             VatModel vat = new VatModel(getCorrectPriceOrderItem(product));
-            OrderItem orderItem = new OrderItem(1, product.recipe().nameLabel(), product.price().value(), vat.getVatPricing(), product.recipe().code(), product.recipe().wareCategories().get(0).nameLabel(),product.recipe().internalNote());
+            OrderItem orderItem = new OrderItem(1, product.recipe().nameLabel(), product.price().value(), vat.getVatPricing(), product.recipe().code(), product.recipe().wareCategories().get(0).nameLabel());
+            if (product.recipe().internalNote() != null)
+                orderItem.setNote(product.recipe().internalNote());
             bill.getVatPrices().add(vat);
 
             for (GenericOrder.SideDish sideDish : product.sideDishes()) {
                 vat = new VatModel(getCorrectPriceSideDish(sideDish));
-                OrderItem extra = new OrderItem(1, sideDish.recipe().nameLabel(), sideDish.price().value(), vat.getVatPricing(), sideDish.recipe().code(), "","");
+                OrderItem extra = new OrderItem(1, sideDish.recipe().nameLabel(), sideDish.price().value(), vat.getVatPricing(), sideDish.recipe().code(), "");
                 bill.addSideDish(orderItem, extra);
                 bill.getVatPrices().add(vat);
 
@@ -166,7 +168,7 @@ public class BillCreation {
             OrderItem tip = new OrderItem(1, SettingsManager.getCtx().getString(R.string.order_tip), order.tip().value(), vat.getVatPricing());
             BillManager.getInstance().getCurrentBill().setTip(tip);
         }
-        if(order.extraCharge().value() != 0.0 ){
+        if (order.extraCharge().value() != 0.0) {
             VatModel vat = new VatModel(21.0);
             bill.getVatPrices().add(vat);
             OrderItem extraCharge = new OrderItem(1, SettingsManager.getCtx().getString(R.string.extra_charge), order.extraCharge().value(), vat.getVatPricing());

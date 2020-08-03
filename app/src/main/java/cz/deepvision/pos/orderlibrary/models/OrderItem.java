@@ -24,12 +24,11 @@ public class OrderItem {
         this.category = "";
     }
 
-    public OrderItem(Integer count, String name, Double price, Double vat, String code, String category,String note) {
+    public OrderItem(Integer count, String name, Double price, Double vat, String code, String category) {
         this.count = count;
         this.name = name;
         this.price = price;
         this.vatPrice = vat;
-        this.note = note;
         this.code = code;
         this.category = category;
     }
