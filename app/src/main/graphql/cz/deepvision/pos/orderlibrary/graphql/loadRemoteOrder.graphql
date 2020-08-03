@@ -63,7 +63,7 @@ fragment genericOrder on Order{
         value
     }
     items {
-
+        note
         price{
             value
             currency{
@@ -79,7 +79,6 @@ fragment genericOrder on Order{
                     vat
                 }
             }
-            internalNote
             code
             nameLabel
             id
