@@ -453,7 +453,7 @@ public class BillModel {
 
                     printList.add(printItem);
                     if (!item.getNote().equals("")) {
-                        printItem = new String[]{"", item.getNote()};
+                        printItem = new String[]{"", item.getNote(),""};
                         printList.add(printItem);
 
                     }
@@ -509,7 +509,7 @@ public class BillModel {
                 printList.add(printItem);
 
                 if (!item.getNote().equals("")) {
-                    printItem = new String[]{"", item.getNote()};
+                    printItem = new String[]{"", item.getNote(),""};
                     printList.add(printItem);
 
                 }
