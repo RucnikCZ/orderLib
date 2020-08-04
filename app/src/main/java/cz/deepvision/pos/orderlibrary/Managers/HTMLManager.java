@@ -306,7 +306,7 @@ public class HTMLManager {
         this.mHTML.append("<div style='text-align: left; border_left-style: solid;border: 2px solid black;'>" +
                 "<div style='color: white; background-color: black; text-align: center;'>" +
                 ctx.getString(R.string.create_order_payment) +
-                "<strong>" + (currentBill.getPayment().equals(EnumUtil.PaymentType.CASH) ? ctx.getString(R.string.html_cash) : ctx.getString(R.string.html_card)) + "</strong>" +
+                "<strong>" + (currentBill.getPayment().equals(EnumUtil.PaymentType.CASH) ? ctx.getString(R.string.html_cash) : ctx.getString(R.string.html_card) +" | "  +currentBill.getPaymentStatus()) + "</strong>" +
                 "</div>" +
                 "<table style='width: 100%;'>" +
                 "<tbody>" +

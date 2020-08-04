@@ -25,7 +25,11 @@ import cz.deepvision.pos.orderlibrary.models.SettingsModel;
 import cz.deepvision.pos.orderlibrary.models.VatModel;
 import cz.deepvision.pos.orderlibrary.utils.BitmapGeneratingAsyncTask;
 import cz.deepvision.pos.orderlibrary.utils.EnumUtil;
+import cz.deepvision.pos.orderlibrary.utils.EnumUtil.PaymentStatus;
 import cz.deepvision.pos.orderlibrary.utils.TimeUtil;
+
+import static cz.deepvision.pos.orderlibrary.utils.EnumUtil.PaymentStatus.*;
+import static cz.deepvision.pos.orderlibrary.utils.EnumUtil.PaymentType.*;
 
 /**
  * <li>Firstly use method setPrintSetings, input param is current settings on device</li>
@@ -196,11 +200,12 @@ public class BillCreation {
         // Nastavení typu platby
         PaymentTypeEnum speedloPayment = order.orderPayments().get(0).paymentMethod().paymentType().enum_();
         if (speedloPayment.equals(PaymentTypeEnum.CASH)) {
-            bill.setPayment(EnumUtil.PaymentType.CASH);
+            bill.setPayment(CASH);
         } else {
-            bill.setPayment(EnumUtil.PaymentType.CARD);
+            bill.setPayment(CARD);
         }
-        bill.setPaymentStatus(EnumUtil.PaymentStatus.PAID);
+        bill.setPaymentStatus(order.orderStates().contains(PAID) ? PAID : UNPAID);
+
 
         // Wi-fi  recycle ID
         if (order.invoiceSequenceResettable() != null)
