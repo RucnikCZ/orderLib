@@ -1,50 +1,62 @@
 package cz.deepvision.pos.orderlibrary.utils;
+
 public class EnumUtil {
 
-    public enum ProductType{
+    public enum ProductType {
         MAIN,
         SIDEDISH,
         COVER,
         INTERNAL
     }
 
-    public enum PriceType{
+    public enum PriceType {
         INHOUSE,
         DELIVERY
     }
 
-    public enum VatType{
+    public enum VatType {
         NOVAT,
         LOWVAT,
         HIGHVAT
     }
 
-    public enum BillType{
+    public enum BillType {
         INCOMING,
         OPENED,
         CLOSED,
         CURRENT
     }
 
-    public enum PaymentType{
+    public enum PaymentType {
         CASH,
         CARD,
         CASH_ONLINE
     }
 
-    public enum PaymentStatus{
-        PAID,
-        UNPAID
+    public enum PaymentStatus {
+        PAID("ZAPLACENO"),
+        UNPAID("NEZAPLACENO");
+        String text;
+
+        PaymentStatus(String text) {
+            this.text = text;
+        }
+
+        @Override
+        public String toString() {
+            return text;
+        }
     }
 
-    public enum OrderStatus{
+
+    public enum OrderStatus {
         NEW,
         RECEIVED,
         COMPLETE,
         CANCELED
     }
 
-    public enum UserRole{
+    public enum UserRole {
         USER,
         CASHIER,
         MANAGER,
@@ -52,18 +64,18 @@ public class EnumUtil {
         SUPERADMIN
     }
 
-    public enum SystemType{
+    public enum SystemType {
         ENIGOO,
         SPEEDLO
     }
 
-    public enum BillAction{
+    public enum BillAction {
         OPEN,
         CANCEL,
         PRINT
     }
 
-    public enum DeliveryType{
+    public enum DeliveryType {
         PICK_UP,
         MESSENGER
     }
