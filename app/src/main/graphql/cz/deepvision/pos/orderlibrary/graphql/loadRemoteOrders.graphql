@@ -9,5 +9,8 @@ query remoteOrders($branchIDs: [ID!], $orderStates: [OrderStateCategoryEnum!]) {
 
     ) {
         id
+        orderStates{
+            enum
+        }
     }
 }
