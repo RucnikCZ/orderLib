@@ -219,14 +219,13 @@ public class HTMLManager {
                 "</tr>" +
                 "<tr>" +
                 "<td style='text-align: left;'>" + ctx.getString(R.string.create_order_run_cashier) + "</td>" +
-                "<td style='text-align: right;'>" + company.getEstablishmentID() + "," + company.getPosID() + "</td>");
+                "<td style='text-align: right;'>" + company.getEstablishmentID() + "," + company.getPosID() + "</td></tr>");
         if (SettingsManager.getInstance().isPrintOrderOrigin()) {
-            mHTML.append("<td style='text-align: right;'>Původ</td>");
-            mHTML.append("<td style='text-align: right;'>"+bill.getOrderOrigin()+"</td>");
+            mHTML.append("<td style='text-align: lef;'>Původ</td>");
+            mHTML.append("<td style='text-align: right;'>"+bill.getOrderOrigin()+"</td></tr>");
         }
 
         this.mHTML.append(
-                "</tr>" +
                         "</tbody>" +
                         "</table>" +
                         "</div>" +
