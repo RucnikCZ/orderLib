@@ -40,7 +40,7 @@ public class BillModel {
     private OrderItem tip = null;
     private OrderItem extraCharge = null;
     private String sectorPlace = "";
-    private OrderOriginEnum orderType = OrderOriginEnum.$UNKNOWN;
+    private String orderOrigin = "";
     private String receiptDate = "";
     private String receiptCashID = "";
     private String receiptCashierID = "";
@@ -93,20 +93,20 @@ public class BillModel {
         return paymentStatus;
     }
 
+    public String getOrderOrigin() {
+        return orderOrigin;
+    }
+
+    public void setOrderOrigin(String orderOrigin) {
+        this.orderOrigin = orderOrigin;
+    }
+
     public String getReceiptID() {
         return receiptID;
     }
 
     public void setReceiptID(String receiptID) {
         this.receiptID = receiptID;
-    }
-
-    public OrderOriginEnum getOrderType() {
-        return orderType;
-    }
-
-    public void setOrderType(OrderOriginEnum orderType) {
-        this.orderType = orderType;
     }
 
     public String getReceiptDate() {
@@ -394,6 +394,10 @@ public class BillModel {
     public void addItem(OrderItem newItem) {
         for (OrderItem oldItem : this.items) {
             if (oldItem.getCode().equals(newItem.getCode())) {
+                if (newItem.getNote() != null) {
+                    items.add(newItem);
+                    return;
+                }
                 if (oldItem.getSideDish().size() == newItem.getSideDish().size() && (newItem.getSideDish().size() == 0)) {
                     oldItem.setCount(oldItem.getCount() + 1);
                     for (OrderItem coverItem : oldItem.getCover()) {
@@ -453,7 +457,7 @@ public class BillModel {
 
                     printList.add(printItem);
                     if (!item.getNote().equals("")) {
-                        printItem = new String[]{"", item.getNote(),""};
+                        printItem = new String[]{"", item.getNote(), ""};
                         printList.add(printItem);
 
                     }
@@ -509,7 +513,7 @@ public class BillModel {
                 printList.add(printItem);
 
                 if (!item.getNote().equals("")) {
-                    printItem = new String[]{"", item.getNote(),""};
+                    printItem = new String[]{"", item.getNote(), ""};
                     printList.add(printItem);
 
                 }

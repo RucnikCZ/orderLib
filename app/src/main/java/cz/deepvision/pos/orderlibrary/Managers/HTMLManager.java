@@ -219,12 +219,18 @@ public class HTMLManager {
                 "</tr>" +
                 "<tr>" +
                 "<td style='text-align: left;'>" + ctx.getString(R.string.create_order_run_cashier) + "</td>" +
-                "<td style='text-align: right;'>" + company.getEstablishmentID() + "," + company.getPosID() + "</td>" +
+                "<td style='text-align: right;'>" + company.getEstablishmentID() + "," + company.getPosID() + "</td>");
+        if (SettingsManager.getInstance().isPrintOrderOrigin()) {
+            mHTML.append("<td style='text-align: right;'>Původ</td>");
+            mHTML.append("<td style='text-align: right;'>"+bill.getOrderOrigin()+"</td>");
+        }
+
+        this.mHTML.append(
                 "</tr>" +
-                "</tbody>" +
-                "</table>" +
-                "</div>" +
-                "<br/>");
+                        "</tbody>" +
+                        "</table>" +
+                        "</div>" +
+                        "<br/>");
     }
 
     private void addOrderItems() {
@@ -282,7 +288,7 @@ public class HTMLManager {
                     "<td style='text-align: right;white-space:nowrap;'>" + formatDouble((currentBill.getTip().getPrice())) + " " + BillManager.getInstance().getCurrency() + " </td>" +
                     "</tr>");
         }
-        if(currentBill.getExtraCharge() != null){
+        if (currentBill.getExtraCharge() != null) {
             this.mHTML.append("<tr>" +
                     "<td style='text-align: left;'></td>" +
                     "<td style='text-align: left;'></td>" +
@@ -306,7 +312,7 @@ public class HTMLManager {
         this.mHTML.append("<div style='text-align: left; border_left-style: solid;border: 2px solid black;'>" +
                 "<div style='color: white; background-color: black; text-align: center;'>" +
                 ctx.getString(R.string.create_order_payment) +
-                "<strong>" + (currentBill.getPayment().equals(EnumUtil.PaymentType.CASH) ? ctx.getString(R.string.html_cash) : ctx.getString(R.string.html_card) +" | "  +currentBill.getPaymentStatus().toString()) + "</strong>" +
+                "<strong>" + (currentBill.getPayment().equals(EnumUtil.PaymentType.CASH) ? ctx.getString(R.string.html_cash) : ctx.getString(R.string.html_card) + " | ") + (currentBill.getPayment().equals(EnumUtil.PaymentType.CARD) ? currentBill.getPaymentStatus() : "") + "</strong>" +
                 "</div>" +
                 "<table style='width: 100%;'>" +
                 "<tbody>" +

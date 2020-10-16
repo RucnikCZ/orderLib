@@ -1,9 +1,6 @@
 package cz.deepvision.pos.orderlibrary.models;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import cz.deepvision.pos.orderlibrary.utils.EnumUtil;
 
@@ -21,6 +18,7 @@ public class SettingsModel {
     private boolean printKitchenTicket2Times = false;
     private boolean printRecipe2Times = false;
     private boolean printProductCodes = false;
+    private boolean printOrderOrigin = false;
     private boolean darkThemeMode = false;
     private boolean devMode = false;
     private boolean printCategories = false;
@@ -91,6 +89,14 @@ public class SettingsModel {
 
     public void setCustomDataEnabled(boolean customDataEnabled) {
         this.customDataEnabled = customDataEnabled;
+    }
+
+    public boolean isPrintOrderOrigin() {
+        return printOrderOrigin;
+    }
+
+    public void setPrintOrderOrigin(boolean printOrderOrigin) {
+        this.printOrderOrigin = printOrderOrigin;
     }
 
     public UserModel getEnigooUser() {
@@ -213,6 +219,7 @@ public class SettingsModel {
     public void setAutomaticFinishOrder(boolean automaticFinishOrder) {
         this.automaticFinishOrder = automaticFinishOrder;
     }
+
 
     public boolean isInvertBonColors() {
         return invertBonColors;

@@ -180,7 +180,7 @@ public class BillCreation {
         }
         // Nastavení adresy a informací o klientovi
         bill.setAddress(order.address().street() + " " + order.address().houseNumber() + ", " + order.address().city());
-
+        bill.setOrderOrigin(order.orderOrigin().enum_().rawValue());
         if (order.address().original() != null) {
             if (!order.address().original().equals(""))
                 bill.setAddress(order.address().original());

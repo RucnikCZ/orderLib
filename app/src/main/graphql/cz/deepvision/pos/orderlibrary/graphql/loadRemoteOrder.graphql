@@ -12,6 +12,11 @@ fragment genericOrder on Order{
     coveringOrders{
         id
     }
+
+    isPaidWithCard
+    orderOnlineState{
+        enum
+    }
     companyBranch{
         name
         defaultCurrency{

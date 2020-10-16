@@ -169,6 +169,7 @@ public class SettingsManager {
 
     }
 
+
     public boolean isPrintProductCodes() {
         return getSettings().isPrintProductCodes();
     }
@@ -213,6 +214,13 @@ public class SettingsManager {
     public void setLastUsedSelectorID(Integer lastUsedSelectorID) {
         getSettings().setLastUsedSelectorID(lastUsedSelectorID);
 
+    }
+
+    public void setPrintOrderOrigin(boolean value){
+        getSettings().setPrintOrderOrigin(value);
+    }
+    public Boolean isPrintOrderOrigin(){
+        return getSettings().isPrintOrderOrigin();
     }
 
     public boolean isAutomaticFinishOrder() {
