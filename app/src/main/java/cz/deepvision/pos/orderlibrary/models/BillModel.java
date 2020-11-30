@@ -27,7 +27,7 @@ public class BillModel {
     private EnumUtil.DeliveryType deliveryType = EnumUtil.DeliveryType.PICK_UP;
     private String source = "";
     private String id = "";
-    private EnumUtil.PaymentStatus paymentStatus = EnumUtil.PaymentStatus.UNPAID;
+    private String paymentStatus = "";
     private String phone = "";
     private EnumUtil.BillType type = EnumUtil.BillType.CURRENT;
     private String note = "";
@@ -89,7 +89,7 @@ public class BillModel {
         this.delivery = delivery;
     }
 
-    public EnumUtil.PaymentStatus getPaymentStatus() {
+    public String getPaymentStatus() {
         return paymentStatus;
     }
 
@@ -243,7 +243,7 @@ public class BillModel {
     }
 
 
-    public void setPaymentStatus(EnumUtil.PaymentStatus paymentStatus) {
+    public void setPaymentStatus(String paymentStatus) {
         this.paymentStatus = paymentStatus;
     }
 

@@ -204,7 +204,7 @@ public class BillCreation {
         } else {
             bill.setPayment(CARD);
         }
-        bill.setPaymentStatus(order.orderStates().contains(PAID) ? PAID : UNPAID);
+        bill.setPaymentStatus(order.isPaidWithCard() ? order.orderOnlineState() != null ? " | ZAPLACENO" : " | NEZAPLACENO" : "");
 
 
         // Wi-fi  recycle ID
