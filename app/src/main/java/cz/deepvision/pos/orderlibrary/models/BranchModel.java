@@ -1,10 +1,11 @@
 package cz.deepvision.pos.orderlibrary.models;
 
-public class CompanyModel {
+public class BranchModel {
     private String logoURL="";
     private String brandName="";
     private String companyName="";
     private String address="";
+    private String companyAdress="";
     private String identificator="";
     private String vatIdentificator="";
     private String establishmentID="";
@@ -82,6 +83,14 @@ public class CompanyModel {
 
     public void setCrewID(String crewID) {
         this.crewID = crewID;
+    }
+
+    public String getCompanyAdress() {
+        return companyAdress;
+    }
+
+    public void setCompanyAdress(String companyAdress) {
+        this.companyAdress = companyAdress;
     }
 
     @Override

@@ -17,7 +17,7 @@ import cz.deepvision.pos.orderlibrary.graphql.type.DeliveryTypeEnum;
 import cz.deepvision.pos.orderlibrary.graphql.type.PaymentTypeEnum;
 import cz.deepvision.pos.orderlibrary.graphql.type.WarePriceTypeEnum;
 import cz.deepvision.pos.orderlibrary.models.BillModel;
-import cz.deepvision.pos.orderlibrary.models.CompanyModel;
+import cz.deepvision.pos.orderlibrary.models.BranchModel;
 import cz.deepvision.pos.orderlibrary.models.DiscountModel;
 import cz.deepvision.pos.orderlibrary.models.OrderItem;
 import cz.deepvision.pos.orderlibrary.models.PrintArguments;
@@ -25,10 +25,8 @@ import cz.deepvision.pos.orderlibrary.models.SettingsModel;
 import cz.deepvision.pos.orderlibrary.models.VatModel;
 import cz.deepvision.pos.orderlibrary.utils.BitmapGeneratingAsyncTask;
 import cz.deepvision.pos.orderlibrary.utils.EnumUtil;
-import cz.deepvision.pos.orderlibrary.utils.EnumUtil.PaymentStatus;
 import cz.deepvision.pos.orderlibrary.utils.TimeUtil;
 
-import static cz.deepvision.pos.orderlibrary.utils.EnumUtil.PaymentStatus.*;
 import static cz.deepvision.pos.orderlibrary.utils.EnumUtil.PaymentType.*;
 
 /**
@@ -41,7 +39,7 @@ public class BillCreation {
     private static volatile boolean isReprint;
     private static volatile boolean isStorno;
     private static volatile boolean isPosOrder;
-    private CompanyModel companyModel;
+    private BranchModel branchModel;
     private static String BASE_TAG;
     private BitmapGeneratingAsyncTask.Callback callback;
 
@@ -52,12 +50,12 @@ public class BillCreation {
         return billcreator;
     }
 
-    public void setPrintSettings(SettingsModel model, final String TAG, Context ctx, BitmapGeneratingAsyncTask.Callback callback, CompanyModel company) {
+    public void setPrintSettings(SettingsModel model, final String TAG, Context ctx, BitmapGeneratingAsyncTask.Callback callback, BranchModel company) {
         SettingsManager.getInstance().setSettings(model);
         BASE_TAG = TAG;
         SettingsManager.setTAG(TAG);
         SettingsManager.setCtx(ctx);
-        this.companyModel = company;
+        this.branchModel = company;
         this.callback = callback;
     }
 
@@ -139,7 +137,7 @@ public class BillCreation {
 
         // Nastavení společnosti, id a celkové ceny
         BillManager.getInstance().setCurrency(order.companyBranch().defaultCurrency().code());
-        bill.setCompanyModel(companyModel);
+        bill.setBranchModel(branchModel);
         bill.setId(order.id());
         bill.setPrice(String.valueOf(order.totalSum().roundedValue()));
 

@@ -3,21 +3,15 @@ package cz.deepvision.pos.orderlibrary.Managers;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.util.Log;
 
-import java.io.ByteArrayOutputStream;
-import java.lang.ref.WeakReference;
 import java.text.DecimalFormat;
-import java.util.Set;
 
 import cz.deepvision.pos.orderlibrary.R;
 import cz.deepvision.pos.orderlibrary.models.BillModel;
-import cz.deepvision.pos.orderlibrary.models.CompanyModel;
+import cz.deepvision.pos.orderlibrary.models.BranchModel;
 import cz.deepvision.pos.orderlibrary.models.DiscountModel;
 import cz.deepvision.pos.orderlibrary.models.PrintArguments;
-import cz.deepvision.pos.orderlibrary.models.SettingsModel;
 import cz.deepvision.pos.orderlibrary.models.UserModel;
 import cz.deepvision.pos.orderlibrary.models.VatModel;
 import cz.deepvision.pos.orderlibrary.utils.BitmapGeneratingAsyncTask;
@@ -111,18 +105,18 @@ public class HTMLManager {
 
         for (String[] item : currentBill.getSimpleBillItems()) {
             if (item.length == 1) {
-                this.mHTML.append("<tr><td colspan='6' style='text-align: center;font-weight:bold;font-size:20px'>" + item[0] + "</td></tr>");
+                this.mHTML.append("<tr><td colspan='2' style='text-align: center;font-weight:bold;font-size:20px'>" + item[0] + "</td></tr>");
             } else {
                 if (item.length == 3) {
                     String itemString = "<tr>" +
-                            "<td colspan='2' style='text-align: left;font-weight:bold'>" + item[0] + "</td>" +
-                            "<td colspan='4' style='text-align: left;font-weight:bold'>" + item[1] + "</td>" +
+                            "<td style='text-align: left;font-weight:bold;white-space:nowrap'>" + item[0] + "</td>" +
+                            "<td style='text-align: left;font-weight:bold'>" + item[1] + "</td>" +
                             "</tr>";
                     this.mHTML.append(itemString);
                 } else {
                     String itemString = "<tr>" +
-                            "<td colspan='2' style='text-align: left;'>" + item[0] + "</td>" +
-                            "<td colspan='4' style='text-align: left;'>" + item[1] + "</td>" +
+                            "<td style='text-align: left;white-space:nowrap'>" + item[0] + "</td>" +
+                            "<td style='text-align: left;'>" + item[1] + "</td>" +
                             "</tr>";
                     this.mHTML.append(itemString);
                 }
@@ -156,12 +150,12 @@ public class HTMLManager {
 
     private void addCompanyHeader() {
         BillModel bill = BillManager.getInstance().getCurrentBill();
-        CompanyModel company = bill.getCompanyModel();
+        BranchModel branch = bill.getBranchModel();
         Context ctx = SettingsManager.getCtx();
 
         if (SettingsManager.getInstance().isRecipeLogoEnabled()) {
-            if (company.getLogoURL() != null && !company.getLogoURL().equals("") && !company.getLogoURL().isEmpty()) {
-                this.mHTML.append("<div style='text-align: center;'><table style='width:100%;'+q><tr><td style='text-align:center;'><img width='75%;' src='").append(company.getLogoURL()).append("'></img></td></table></div>");
+            if (branch.getLogoURL() != null && !branch.getLogoURL().equals("") && !branch.getLogoURL().isEmpty()) {
+                this.mHTML.append("<div style='text-align: center;'><table style='width:100%;'+q><tr><td style='text-align:center;'><img width='75%;' src='").append(branch.getLogoURL()).append("'></img></td></table></div>");
             }
         }
 
@@ -177,19 +171,19 @@ public class HTMLManager {
 
         this.mHTML.append("<div style='text-align: center;'>" +
                 "<div style='color: black; background-color: white; text-align: center;'>" +
-                company.getBrandName() +
-                "<br/>" + company.getCompanyName() +
+                branch.getBrandName() +
+                "<br/>" + branch.getCompanyName() +
                 "</div>" +
-                company.getAddress() + "<br/>" +
-                ctx.getString(R.string.companyID) + ":" + company.getIdentificator() + "<br/>" +
-                ctx.getString(R.string.companyVatID) + ":" + company.getVatIdentificator() + "<br/>" +
+                branch.getCompanyAdress() + "<br/>" +
+                ctx.getString(R.string.companyID) + ":" + branch.getIdentificator() + "<br/>" +
+                ctx.getString(R.string.companyVatID) + ":" + branch.getVatIdentificator() + "<br/>" +
                 "</div>" +
                 "<br/>");
     }
 
     private void addRecipeHeader() {
         BillModel bill = BillManager.getInstance().getCurrentBill();
-        CompanyModel company = bill.getCompanyModel();
+        BranchModel branch = bill.getBranchModel();
         UserModel user = new UserModel();
 
         if (SettingsManager.getInstance().isSpeedloEnabled()) {
@@ -219,7 +213,7 @@ public class HTMLManager {
                 "</tr>" +
                 "<tr>" +
                 "<td style='text-align: left;'>" + ctx.getString(R.string.create_order_run_cashier) + "</td>" +
-                "<td style='text-align: right;'>" + company.getEstablishmentID() + "," + company.getPosID() + "</td></tr>");
+                "<td style='text-align: right;'>" + branch.getEstablishmentID() + "," + branch.getPosID() + "</td></tr>");
         if (SettingsManager.getInstance().isPrintOrderOrigin()) {
             mHTML.append("<td style='text-align: lef;'>Původ</td>");
             mHTML.append("<td style='text-align: right;'>"+bill.getOrderOrigin()+"</td></tr>");
@@ -293,6 +287,14 @@ public class HTMLManager {
                     "<td style='text-align: left;'></td>" +
                     "<td style='text-align: left;'>" + currentBill.getExtraCharge().getName() + "</td>" +
                     "<td style='text-align: right;white-space:nowrap;'>" + formatDouble((currentBill.getExtraCharge().getPrice())) + " " + BillManager.getInstance().getCurrency() + " </td>" +
+                    "</tr>");
+        }
+        if(SettingsManager.getInstance().isPrintProductCount()){
+            this.mHTML.append("<tr>" +
+                    "<td style='text-align: left;'></td>" +
+                    "<td style='text-align: left;'></td>" +
+                    "<td style='text-align: left;'>" + "Celkový počet položek v objednávce" + "</td>" +
+                    "<td style='text-align: right;white-space:nowrap;'>" + currentBill.getItems().size() +" </td>" +
                     "</tr>");
         }
         this.mHTML.append("</tbody>" +

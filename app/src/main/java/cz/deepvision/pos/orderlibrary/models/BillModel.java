@@ -10,7 +10,6 @@ import java.util.Set;
 
 import cz.deepvision.pos.orderlibrary.Managers.BillManager;
 import cz.deepvision.pos.orderlibrary.Managers.SettingsManager;
-import cz.deepvision.pos.orderlibrary.graphql.type.OrderOriginEnum;
 import cz.deepvision.pos.orderlibrary.utils.EnumUtil;
 
 
@@ -53,7 +52,7 @@ public class BillModel {
     private boolean createOrderResponseSucces = false;
     private List<String> categories = new ArrayList<>();
     private List<OrderItem> items = new ArrayList<>();
-    private CompanyModel companyModel;
+    private BranchModel branchModel;
     private boolean isStorno = false;
 
 
@@ -313,12 +312,12 @@ public class BillModel {
         this.deliveryType = deliveryType;
     }
 
-    public CompanyModel getCompanyModel() {
-        return companyModel;
+    public BranchModel getBranchModel() {
+        return branchModel;
     }
 
-    public void setCompanyModel(CompanyModel companyModel) {
-        this.companyModel = companyModel;
+    public void setBranchModel(BranchModel branchModel) {
+        this.branchModel = branchModel;
     }
 
     public List<OrderItem> getItems() {
@@ -398,10 +397,14 @@ public class BillModel {
                     items.add(newItem);
                     return;
                 }
-                if (oldItem.getSideDish().size() == newItem.getSideDish().size() && (newItem.getSideDish().size() == 0)) {
-                    oldItem.setCount(oldItem.getCount() + 1);
-                    for (OrderItem coverItem : oldItem.getCover()) {
-                        coverItem.setCount(oldItem.getCount());
+                if(newItem.getSideDish().size() >0){
+                    items.add(newItem);
+                    return;
+                }
+                if(newItem.getSideDish().size() == 0){
+                    oldItem.setCount(oldItem.getCount()+1);
+                    for (OrderItem cover : oldItem.getCover()) {
+                        cover.setCount(cover.getCount()+1);
                     }
                     return;
                 }

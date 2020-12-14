@@ -4,7 +4,7 @@ import android.content.Context;
 
 import java.util.ArrayList;
 
-import cz.deepvision.pos.orderlibrary.models.CompanyModel;
+import cz.deepvision.pos.orderlibrary.models.BranchModel;
 import cz.deepvision.pos.orderlibrary.models.SettingsModel;
 import cz.deepvision.pos.orderlibrary.models.UserModel;
 import cz.deepvision.pos.orderlibrary.utils.EnumUtil;
@@ -86,11 +86,11 @@ public class SettingsManager {
 
     }
 
-    public ArrayList<CompanyModel> getCompany() {
+    public ArrayList<BranchModel> getCompany() {
         return getSettings().getCompany();
     }
 
-    public void setCompany(ArrayList<CompanyModel> company) {
+    public void setCompany(ArrayList<BranchModel> company) {
         getSettings().setCompany(company);
 
     }
@@ -223,6 +223,12 @@ public class SettingsManager {
         return getSettings().isPrintOrderOrigin();
     }
 
+    public void setPrintProductCount(boolean value){
+        getSettings().setPrintProductCount(value);
+    }
+    public Boolean isPrintProductCount(){
+        return getSettings().isPrintProductCount();
+    }
     public boolean isAutomaticFinishOrder() {
         return getSettings().isAutomaticFinishOrder();
     }

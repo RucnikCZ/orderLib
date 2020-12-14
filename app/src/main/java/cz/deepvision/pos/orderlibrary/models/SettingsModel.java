@@ -6,7 +6,7 @@ import cz.deepvision.pos.orderlibrary.utils.EnumUtil;
 
 public class SettingsModel {
     private EnumUtil.PriceType deliveryType = EnumUtil.PriceType.DELIVERY;
-    private ArrayList<CompanyModel> company;
+    private ArrayList<BranchModel> company;
     private boolean enigooEnabled = false;
     private boolean speedloEnabled = false;
     private boolean customDataEnabled = false;
@@ -60,11 +60,11 @@ public class SettingsModel {
         this.printer80mm = printer80mm;
     }
 
-    public ArrayList<CompanyModel> getCompany() {
+    public ArrayList<BranchModel> getCompany() {
         return company;
     }
 
-    public void setCompany(ArrayList<CompanyModel> company) {
+    public void setCompany(ArrayList<BranchModel> company) {
         this.company = company;
     }
 
