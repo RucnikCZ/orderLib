@@ -393,7 +393,7 @@ public class BillModel {
     public void addItem(OrderItem newItem) {
         for (OrderItem oldItem : this.items) {
             if (oldItem.getCode().equals(newItem.getCode())) {
-                if (newItem.getNote() != null) {
+                if (newItem.getNote().equals("")) {
                     items.add(newItem);
                     return;
                 }
