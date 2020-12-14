@@ -1,12 +1,12 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.apollographql.android'
+apply plugin: 'com.apollographql.apollo'
 
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
         minSdkVersion 25
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -31,7 +31,7 @@ apollo {
     ]
 }
 dependencies {
-    def apollo_version = "1.2.1"
+    def apollo_version = "1.4.3"
 
 
     //Apollo
