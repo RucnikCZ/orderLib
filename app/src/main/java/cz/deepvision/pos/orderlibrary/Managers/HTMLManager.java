@@ -11,6 +11,7 @@ import cz.deepvision.pos.orderlibrary.R;
 import cz.deepvision.pos.orderlibrary.models.BillModel;
 import cz.deepvision.pos.orderlibrary.models.BranchModel;
 import cz.deepvision.pos.orderlibrary.models.DiscountModel;
+import cz.deepvision.pos.orderlibrary.models.OrderItem;
 import cz.deepvision.pos.orderlibrary.models.PrintArguments;
 import cz.deepvision.pos.orderlibrary.models.UserModel;
 import cz.deepvision.pos.orderlibrary.models.VatModel;
@@ -290,11 +291,15 @@ public class HTMLManager {
                     "</tr>");
         }
         if(SettingsManager.getInstance().isPrintProductCount()){
+            int size = 0;
+            for (OrderItem item : currentBill.getItems()) {
+                size += item.getCount();
+            }
             this.mHTML.append("<tr>" +
                     "<td style='text-align: left;'></td>" +
                     "<td style='text-align: left;'></td>" +
                     "<td style='text-align: left;'>" + "Celkový počet položek v objednávce" + "</td>" +
-                    "<td style='text-align: right;white-space:nowrap;'>" + currentBill.getItems().size() +" </td>" +
+                    "<td style='text-align: right;white-space:nowrap;'>" + size +" </td>" +
                     "</tr>");
         }
         this.mHTML.append("</tbody>" +
