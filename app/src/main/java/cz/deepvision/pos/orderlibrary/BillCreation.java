@@ -322,9 +322,12 @@ public class BillCreation {
                 }
             }
         } else {
-            if (!isKitchenPrinted || !isTicketPrinted) {
-                printKitchenTicket(order, isKitchenPrinted);
-                printReceipt(order, isTicketPrinted);
+            if (isAutoPrint) {
+                if (!isKitchenPrinted || !isTicketPrinted) {
+                    if (SettingsManager.getInstance().isPrintKitchenTicketEnabled())
+                        printKitchenTicket(order, isKitchenPrinted);
+                    printReceipt(order, isTicketPrinted);
+                }
             }
         }
     }
