@@ -127,7 +127,9 @@ public class HTMLManager {
         this.mHTML.append("</tbody>" +
                 "</table>" +
                 "</div>");
-        this.mHTML.append("<div style='text-align: center; border-style: solid;'>" + "<div style='color: white; background-color: black; text-align: center;'>" + "Objednáno v: ").append(currentBill.getDate()).append("</div>").append("</div>");
+        this.mHTML.append("<div style='text-align: center; border-style: solid;'>" + "<div style='color: white; background-color: black; text-align: center;'>" + "Objednáno v: ").append(currentBill.getDate()).append("</div></div>");
+        String deliveryTypeText = currentBill.getDeliveryType().equals(EnumUtil.DeliveryType.MESSENGER) ? ctx.getString(R.string.html_delivery) : ctx.getString(R.string.html_personal_pick);
+        this.mHTML.append("<div style='text-align: center; border-style: solid;'>" + "<div style='color: black;border:2px solid black;padding:5px;font-size:20px;font-weight:bold; background-color: white; text-align: center;'>" + "Typ doručení").append(deliveryTypeText).append("</div></div>");
         this.mHTML.append("<br/>");
 
 
@@ -217,11 +219,11 @@ public class HTMLManager {
                 "<td style='text-align: right;'>" + branch.getEstablishmentID() + "," + branch.getPosID() + "</td></tr>");
         if (SettingsManager.getInstance().isPrintOrderOrigin()) {
             mHTML.append("<td style='text-align: lef;'>Původ</td>");
-            mHTML.append("<td style='text-align: right;'>"+bill.getOrderOrigin()+"</td></tr>");
+            mHTML.append("<td style='text-align: right;'>" + bill.getOrderOrigin() + "</td></tr>");
         }
 
         this.mHTML.append(
-                        "</tbody>" +
+                "</tbody>" +
                         "</table>" +
                         "</div>" +
                         "<br/>");
@@ -290,7 +292,7 @@ public class HTMLManager {
                     "<td style='text-align: right;white-space:nowrap;'>" + formatDouble((currentBill.getExtraCharge().getPrice())) + " " + BillManager.getInstance().getCurrency() + " </td>" +
                     "</tr>");
         }
-        if(SettingsManager.getInstance().isPrintProductCount()){
+        if (SettingsManager.getInstance().isPrintProductCount()) {
             int size = 0;
             for (OrderItem item : currentBill.getItems()) {
                 size += item.getCount();
@@ -299,7 +301,7 @@ public class HTMLManager {
                     "<td style='text-align: left;'></td>" +
                     "<td style='text-align: left;'></td>" +
                     "<td style='text-align: left;'>" + "Celkový počet položek v objednávce" + "</td>" +
-                    "<td style='text-align: right;white-space:nowrap;'>" + size +" </td>" +
+                    "<td style='text-align: right;white-space:nowrap;'>" + size + " </td>" +
                     "</tr>");
         }
         this.mHTML.append("</tbody>" +
