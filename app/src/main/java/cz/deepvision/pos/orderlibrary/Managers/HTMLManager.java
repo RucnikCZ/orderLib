@@ -127,10 +127,10 @@ public class HTMLManager {
         this.mHTML.append("</tbody>" +
                 "</table>" +
                 "</div>");
-        this.mHTML.append("<div style='text-align: center; border-style: solid;'>" + "<div style='color: white; background-color: black; text-align: center;'>" + "Objednáno v: ").append(currentBill.getDate()).append("</div></div>");
+        this.mHTML.append("<div style='text-align: center; border-style: solid;'>");
+        this.mHTML.append("<div style='color: white; background-color: black; text-align: center;'>" + "Objednáno v: ").append(currentBill.getDate()).append("</div>");
         String deliveryTypeText = currentBill.getDeliveryType().equals(EnumUtil.DeliveryType.MESSENGER) ? ctx.getString(R.string.html_delivery) : ctx.getString(R.string.html_personal_pick);
-        this.mHTML.append("<div style='text-align: center; border-style: solid;'>" + "<div style='color: black;border:2px solid black;padding:5px;font-size:20px;font-weight:bold; background-color: white; text-align: center;'>" + "Typ doručení").append(deliveryTypeText).append("</div></div>");
-        this.mHTML.append("<br/>");
+        this.mHTML.append("<div style='color: black;border:2px solid black;padding:5px;font-size:20px;font-weight:bold; background-color: white; text-align: center;'>" + "Typ doručení: ").append(deliveryTypeText).append("</div>");
 
 
         String backColor = "white";
@@ -140,13 +140,11 @@ public class HTMLManager {
             backColor2 = "white";
         }
         if (!currentBill.getNote().equals("")) {
-            this.mHTML.append("<div style='text-align : center;border-style: solid;'>" + "<div style='background-color:" + backColor2 + ";color:" + backColor + ";text-align: center;'>" + "Poznámka ").append("</div>").append("<table style='width: 100%;background-color:" + backColor + ";color:" + backColor2 + ";'>").append("<tbody>").append("<tr>");
+            this.mHTML.append("<div style='background-color:" + backColor2 + ";color:" + backColor + ";text-align: center;'>" + "Poznámka ").append("</div>").append("<table style='width: 100%;background-color:" + backColor + ";color:" + backColor2 + ";'>").append("<tbody>").append("<tr>");
             this.mHTML.append("<td style='text-align: left;font-size: 22px;'>").append(currentBill.getNote()).append("</td>").append("</tr>");
-            this.mHTML.append("</tbody>" +
-                    "</table>" +
-                    "</div>" +
-                    "<br/>");
+            this.mHTML.append("</tbody></table>");
         }
+        this.mHTML.append("</div");
         return this.mHTML.toString();
     }
 
