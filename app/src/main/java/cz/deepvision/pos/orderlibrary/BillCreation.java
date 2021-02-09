@@ -36,11 +36,13 @@ import static cz.deepvision.pos.orderlibrary.utils.EnumUtil.PaymentType.*;
 
 public class BillCreation {
     public static BillCreation billcreator = new BillCreation();
-    private static volatile boolean isReprint;
-    private static volatile boolean isStorno;
-    private static volatile boolean isPosOrder;
+    private static boolean isReprint;
+    private static boolean isStorno;
+    private static boolean isPosOrder;
+    private static boolean isPrintKitchen;
+    private static boolean isPrintTicket;
     private BranchModel branchModel;
-    private static String BASE_TAG;
+    private static String TAG;
     private BitmapGeneratingAsyncTask.Callback callback;
 
 
@@ -52,11 +54,14 @@ public class BillCreation {
 
     public void setPrintSettings(SettingsModel model, final String TAG, Context ctx, BitmapGeneratingAsyncTask.Callback callback, BranchModel company) {
         SettingsManager.getInstance().setSettings(model);
-        BASE_TAG = TAG;
-        SettingsManager.setTAG(TAG);
         SettingsManager.setCtx(ctx);
+        this.TAG = TAG;
         this.branchModel = company;
         this.callback = callback;
+    }
+
+    public void setAdminPrintParametrs(boolean printBon, boolean printTicket) {
+
     }
 
     public void reprintOrder(GenericOrder order) {
@@ -308,12 +313,12 @@ public class BillCreation {
     }
 
     private void printOrder(GenericOrder order, BillModel bill, boolean isAccepted, boolean isInProgress, boolean isKitchenPrinted, boolean isTicketPrinted, boolean isAutoPrint) {
-        Log.d(BASE_TAG, order.id() + " is ready for print from server");
+        Log.d(TAG, order.id() + " is ready for print from server");
         if (isPosOrder) {
             if (isAccepted && isInProgress && isAutoPrint && (!isKitchenPrinted || !isTicketPrinted)) {
                 // FiskalProUtil.print(T1000Activity.usbService, false);
                 if (!BillManager.getInstance().getCurrentBill().isHasReceipt()) {
-                    Log.d(BASE_TAG, "Printing order:" + bill.getId());
+                    Log.d(TAG, "Printing order:" + bill.getId());
                     bill.setHasReceipt(true);
                     if (SettingsManager.getInstance().isPrintKitchenTicketEnabled()) {
                         printKitchenTicket(order, isKitchenPrinted);
@@ -324,9 +329,10 @@ public class BillCreation {
         } else {
             if (isAutoPrint) {
                 if (!isKitchenPrinted || !isTicketPrinted) {
-                    if (SettingsManager.getInstance().isPrintKitchenTicketEnabled())
+                    if (isPrintKitchen)
                         printKitchenTicket(order, isKitchenPrinted);
-                    printReceipt(order, isTicketPrinted);
+                    if (isPrintTicket)
+                        printReceipt(order, isTicketPrinted);
                 }
             }
         }
@@ -345,8 +351,11 @@ public class BillCreation {
     }
 
     private void reprintOrder(GenericOrder order, BillModel bill) {
-        Log.d(BASE_TAG, "Reprinting order: " + bill.getId());
+        Log.d(TAG, "Reprinting order: " + bill.getId());
+        if(isPosOrder)
         ReceiptManager.getInstance().reprint(order.id(), isReprint, callback);
+        else
+            ReceiptManager.getInstance().reprintAdmin(order.id(), isReprint,isPrintKitchen, callback);
 
     }
 }

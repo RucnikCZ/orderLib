@@ -1,5 +1,7 @@
 package cz.deepvision.pos.orderlibrary.Managers;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Set;
 
 import cz.deepvision.pos.orderlibrary.graphql.type.OrderOriginEnum;
@@ -30,28 +32,40 @@ public class ReceiptManager {
     }
 
     public void printReceipt(BitmapGeneratingAsyncTask.Callback callback, PrintArguments arguments) {
-        String recipeHTML = HTMLManager.getInstance().generateHTMLForRecipe();
-        HTMLManager.getInstance().printBitmap(recipeHTML, 150, callback, arguments);
-        BillManager.getInstance().getCurrentBill().setRecipeHTML(recipeHTML);
+        generateTicket(callback, arguments, HTMLManager.getInstance().generateHTMLForRecipe());
     }
 
     public void printKitchenTicket(BitmapGeneratingAsyncTask.Callback callback, PrintArguments arguments) {
-        String recipeHTML = HTMLManager.getInstance().generateHTMLForKitchenTicket();
-        HTMLManager.getInstance().printBitmap(recipeHTML, 150, callback, arguments);
-        BillManager.getInstance().getCurrentBill().setRecipeHTML(recipeHTML);
+        generateTicket(callback, arguments, HTMLManager.getInstance().generateHTMLForKitchenTicket());
     }
 
     public void reprint(String orderID, boolean reprint, BitmapGeneratingAsyncTask.Callback callback) {
-        PrintArguments arguments = new PrintArguments(orderID, reprint);
-
-        String recipeHTML = HTMLManager.getInstance().generateHTMLForRecipe();
-        HTMLManager.getInstance().printBitmap(recipeHTML, 150, callback, arguments);
-        BillManager.getInstance().getCurrentBill().setRecipeHTML(recipeHTML);
+        PrintArguments arguments = getPrintArguments(orderID, reprint, callback);
 
         if (SettingsManager.getInstance().isPrintKitchenTicketEnabled()) {
-            String bonHTML = HTMLManager.getInstance().generateHTMLForKitchenTicket();
-            HTMLManager.getInstance().printBitmap(bonHTML, 150, callback, arguments);
-            BillManager.getInstance().getCurrentBill().setRecipeHTML(bonHTML);
+            generateTicket(callback, arguments, HTMLManager.getInstance().generateHTMLForKitchenTicket());
         }
+    }
+
+
+
+    public void reprintAdmin(String orderID, boolean reprint,boolean kitchenPrint, BitmapGeneratingAsyncTask.Callback callback) {
+        PrintArguments arguments = getPrintArguments(orderID, reprint, callback);
+        if (kitchenPrint) {
+            generateTicket(callback, arguments, HTMLManager.getInstance().generateHTMLForKitchenTicket());
+        }
+    }
+
+    private void generateTicket(BitmapGeneratingAsyncTask.Callback callback, PrintArguments arguments, String s) {
+        String bonHTML = s;
+        HTMLManager.getInstance().printBitmap(bonHTML, 150, callback, arguments);
+        BillManager.getInstance().getCurrentBill().setRecipeHTML(bonHTML);
+    }
+    @NotNull
+    private PrintArguments getPrintArguments(String orderID, boolean reprint, BitmapGeneratingAsyncTask.Callback callback) {
+        PrintArguments arguments = new PrintArguments(orderID, reprint);
+
+        generateTicket(callback, arguments, HTMLManager.getInstance().generateHTMLForRecipe());
+        return arguments;
     }
 }
