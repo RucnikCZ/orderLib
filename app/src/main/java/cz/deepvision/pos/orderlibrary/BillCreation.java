@@ -61,6 +61,8 @@ public class BillCreation {
     }
 
     public void setAdminPrintParametrs(boolean printBon, boolean printTicket) {
+        isPrintKitchen = printBon;
+        isPrintTicket = printTicket
 
     }
 

@@ -11,12 +11,13 @@ import cz.deepvision.pos.orderlibrary.graphql.type.OrderStateCategoryEnum;
 
 public class PrintArguments {
     private String orderID;
+    private boolean smallBitmap = false;
+    private boolean reprint = false;
     private boolean typeKitchen;
     private Bitmap bitmapforPrint;
-    private boolean smallBitmap = false;
     private OrderOriginEnum origin;
     private OrderStateCategoryEnum orderState;
-    private boolean reprint = false;
+
 
     public PrintArguments() {
     }
