@@ -61,7 +61,7 @@ public class ReceiptManager {
         HTMLManager.getInstance().printBitmap(bonHTML, 150, callback, arguments);
         BillManager.getInstance().getCurrentBill().setRecipeHTML(bonHTML);
     }
-    @NotNull
+
     private PrintArguments getPrintArguments(String orderID, boolean reprint, BitmapGeneratingAsyncTask.Callback callback) {
         PrintArguments arguments = new PrintArguments(orderID, reprint);
 

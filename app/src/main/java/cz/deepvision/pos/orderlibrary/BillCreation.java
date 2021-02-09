@@ -353,10 +353,10 @@ public class BillCreation {
 
     private void reprintOrder(GenericOrder order, BillModel bill) {
         Log.d(TAG, "Reprinting order: " + bill.getId());
-        if(isPosOrder)
-        ReceiptManager.getInstance().reprint(order.id(), isReprint, callback);
+        if (isPosOrder)
+            ReceiptManager.getInstance().reprint(order.id(), isReprint, callback);
         else
-            ReceiptManager.getInstance().reprintAdmin(order.id(), isReprint,isPrintKitchen, callback);
+            ReceiptManager.getInstance().reprintAdmin(order.id(), isReprint, isPrintKitchen, callback);
 
     }
 }
