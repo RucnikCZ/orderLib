@@ -22,6 +22,12 @@ fragment genericOrder on Order{
         defaultCurrency{
             code
         }
+        settings{
+            deliveryVat{
+                default
+                vat
+            }
+        }
 
     }
     acceptedAt
