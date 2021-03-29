@@ -162,7 +162,12 @@ public class BillCreation {
             bill.setDeliveryType(order.deliveryType().enum_().equals(DeliveryTypeEnum.PICKUP) ? EnumUtil.DeliveryType.PICK_UP : EnumUtil.DeliveryType.MESSENGER);
             if (order.warePriceType().enum_().equals(WarePriceTypeEnum.DELIVERY)) {
                 if (order.transportFee().value() != 0) {
-                    VatModel vat = new VatModel(21.0);
+                    VatModel vat;
+                    if (order.companyBranch().settings() != null && order.companyBranch().settings().deliveryVat() != null &&
+                            order.companyBranch().settings().deliveryVat().default_())
+                        vat = new VatModel(order.companyBranch().settings().deliveryVat().vat());
+                    else
+                        vat = new VatModel(21.0);
                     OrderItem delivery = new OrderItem(1, "Doprava", order.transportFee().value(), vat.getVatPricing());
                     BillManager.getInstance().getCurrentBill().setTransport(delivery);
                     bill.getVatPrices().add(vat);
