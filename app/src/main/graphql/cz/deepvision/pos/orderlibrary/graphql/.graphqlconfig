@@ -7,12 +7,12 @@
         "url": "https://c2e-p1.deep-vision.cloud/graphql",
         "headers": {
           "user-agent": "JS GraphQL",
-          "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo4MDQsImF1dGhlbnRpY2F0aW9uX3Rva2VuIjoiRlFycFRpZHM4a3V3Nmtka1hPZ2Jkd3R0IiwiaWF0IjoxMTU5MTA3NSwianRpIjoiZmU0YzlkZTkzNTg4MjM0N2RiZjkyOGZiYTAwMzA2MTIifQ.D-wfsRxskp_AvCY12NeYn4DvpCLLCLjzJx9nbshHc8I"
+          "Authorization": ""
         },
         "subscription": {
           "url": "wss://c2e-p1.deep-vision.cloud/cable",
           "connectionParams": {
-            "token": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo4MDQsImF1dGhlbnRpY2F0aW9uX3Rva2VuIjoiRlFycFRpZHM4a3V3Nmtka1hPZ2Jkd3R0IiwiaWF0IjoxMTU5MTA3NSwianRpIjoiZmU0YzlkZTkzNTg4MjM0N2RiZjkyOGZiYTAwMzA2MTIifQ.D-wfsRxskp_AvCY12NeYn4DvpCLLCLjzJx9nbshHc8I"
+            "token": ""
           }
         },
         "introspect": false
